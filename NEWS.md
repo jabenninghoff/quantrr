@@ -1,3 +1,3 @@
-# quantrr (development version)
+# quantrr 1.0.0
 
-* Initial CRAN submission.
+Initial Release.
