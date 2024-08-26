@@ -1,0 +1,19 @@
+linters: linters_with_tags(
+    tags = NULL,
+    extraction_operator_linter = NULL,
+    implicit_integer_linter = NULL,
+    line_length_linter(100),
+    missing_package_linter = NULL,
+    namespace_linter = NULL,
+    nonportable_path_linter = NULL,
+    paste_linter(allow_file_path = "always"),
+    todo_comment_linter = NULL,
+    undesirable_function_linter(
+      within(all_undesirable_functions, rm(ifelse, library, require, structure))
+    ),
+    undesirable_operator_linter(all_undesirable_operators),
+    unnecessary_concatenation_linter(allow_single_expression = FALSE),
+    unused_import_linter(
+      except_packages = c("bit64", "data.table", "tidyverse", pkgload::pkg_name("."))
+    )
+  )

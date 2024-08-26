@@ -1,12 +1,30 @@
 Package: quantrr
-Title: What the Package Does (One Line, Title Case)
+Title: Quantify and Report (Technology) Risk
 Version: 0.0.0.9000
 Authors@R: 
     person("John", "Benninghoff", , "jbenninghoff@mac.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6230-4742"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: A streamlined tool designed to make it easier to quantify
+    risk using expert estimation. Given expert estimates for loss
+    frequency and magnitude, generate a report that forecasts losses by
+    risk and in aggregate.
+License: MIT + file LICENSE
+URL: https://jabenninghoff.github.io/quantrr/,
+    https://github.com/jabenninghoff/quantrr
+BugReports: https://github.com/jabenninghoff/quantrr/issues
+Suggests: 
+    desc,
+    devtools,
+    fs,
+    knitr,
+    pkgload,
+    rdev (>= 1.11.1),
+    rmarkdown,
+    testthat (>= 3.0.0),
+    usethis
+Remotes: 
+    jabenninghoff/rdev
+Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2

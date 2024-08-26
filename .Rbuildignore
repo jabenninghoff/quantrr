@@ -1,2 +1,9 @@
-^quantrr\.Rproj$
+^renv$
+^renv\.lock$
+^\.github$
+^\.lintr$
 ^\.Rproj\.user$
+^LICENSE\.md$
+^quantrr\.Rproj$
+^README\.Rmd$
+^TODO\.md$
