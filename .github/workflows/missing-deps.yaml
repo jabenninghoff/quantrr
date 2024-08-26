@@ -1,0 +1,36 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+name: missing-deps
+
+jobs:
+  missing-deps:
+    runs-on: macos-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+
+      - uses: r-lib/actions/setup-renv@v2
+
+      - name: Install rdev for rdev
+        run: |
+          if (!requireNamespace("rdev", quietly = TRUE)) { # only TRUE for rdev itself
+            remotes::install_local(".", upgrade = "never")
+          }
+        shell: Rscript {0}
+
+      - name: Find missing dependencies
+        run: |
+          mdeps <- rdev::missing_deps()
+          mdeps
+          stopifnot(nrow(mdeps) == 0)
+        shell: Rscript {0}
