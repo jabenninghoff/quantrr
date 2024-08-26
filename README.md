@@ -7,14 +7,16 @@
 
 [![R-CMD-check](https://github.com/jabenninghoff/quantrr/workflows/R-CMD-check/badge.svg)](https://github.com/jabenninghoff/quantrr/actions)
 [![lint](https://github.com/jabenninghoff/quantrr/workflows/lint/badge.svg)](https://github.com/jabenninghoff/quantrr/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/jabenninghoff/quantrr/graph/badge.svg)](https://app.codecov.io/gh/jabenninghoff/quantrr)
 <!-- badges: end -->
 
 ## Overview
 
-**What the Package Does (One Line, Title Case):** What the package does
-(one paragraph).
-
-Feel free to use and/or fork this project!
+**Quantify and Report (Technology) Risk:** A streamlined tool designed
+to make it easier to quantify risk using expert estimation. Given expert
+estimates for loss frequency and magnitude, generate a report that
+forecasts losses by risk and in aggregate.
 
 ## Installation
 
@@ -37,11 +39,3 @@ renv::install("jabenninghoff/quantrr")
 
 - Changelog: See “Changelog” or `NEWS.md`.
 - Planned: [TODO](TODO.md)
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-# basic example code
-```
