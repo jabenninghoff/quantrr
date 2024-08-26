@@ -12,6 +12,10 @@ License: MIT + file LICENSE
 URL: https://jabenninghoff.github.io/quantrr/,
     https://github.com/jabenninghoff/quantrr
 BugReports: https://github.com/jabenninghoff/quantrr/issues
+Imports:
+    dplyr,
+    purrr,
+    tibble
 Suggests: 
     covr,
     desc,
