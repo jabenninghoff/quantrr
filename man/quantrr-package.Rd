@@ -4,9 +4,9 @@
 \name{quantrr-package}
 \alias{quantrr}
 \alias{quantrr-package}
-\title{quantrr: What the Package Does (One Line, Title Case)}
+\title{quantrr: Quantify and Report (Technology) Risk}
 \description{
-What the package does (one paragraph).
+A streamlined tool designed to make it easier to quantify risk using expert estimation. Given expert estimates for loss frequency and magnitude, generate a report that forecasts losses by risk and in aggregate.
 }
 \seealso{
 Useful links:

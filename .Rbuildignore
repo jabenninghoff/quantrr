@@ -1,9 +1,12 @@
-^renv$
-^renv\.lock$
+^_pkgdown\.yml$
 ^\.github$
 ^\.lintr$
 ^\.Rproj\.user$
+^docs$
 ^LICENSE\.md$
+^pkgdown$
 ^quantrr\.Rproj$
 ^README\.Rmd$
+^renv\.lock$
+^renv$
 ^TODO\.md$

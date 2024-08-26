@@ -51,3 +51,4 @@ rsconnect/
 .DS_Store
 *.swp
 ~$*
+docs
