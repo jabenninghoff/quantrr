@@ -13,8 +13,10 @@ URL: https://jabenninghoff.github.io/quantrr/,
     https://github.com/jabenninghoff/quantrr
 BugReports: https://github.com/jabenninghoff/quantrr/issues
 Suggests: 
+    covr,
     desc,
     devtools,
+    DT,
     fs,
     knitr,
     pkgdown,
