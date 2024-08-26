@@ -2,6 +2,7 @@
 ^\.github$
 ^\.lintr$
 ^\.Rproj\.user$
+^codecov\.yml$
 ^docs$
 ^LICENSE\.md$
 ^pkgdown$
