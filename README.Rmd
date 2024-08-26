@@ -25,8 +25,6 @@ knitr::opts_chunk$set(
 
 **`r desc::desc_get_field("Title")`:** `r desc::desc_get_field("Description")`
 
-Feel free to use and/or fork this project!
-
 ## Installation
 
 You can install the development version of quantrr from [GitHub](https://github.com/) with:
@@ -47,11 +45,3 @@ renv::install("jabenninghoff/quantrr")
 
 - Changelog: See "Changelog" or `NEWS.md`.
 - Planned: [TODO](TODO.md)
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-# basic example code
-```
