@@ -1,0 +1,13 @@
+/* pandoc task-list styling from https://github.com/jgm/pandoc/blob/main/data/templates/styles.html
+   see issue: https://github.com/jgm/pandoc/issues/8151
+   and issue: https://github.com/r-lib/pkgdown/issues/2377 */
+
+/* The extra [class] is a hack that increases specificity enough to
+   override a similar rule in reveal.js */
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  font-size: inherit;
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
