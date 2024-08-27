@@ -4,6 +4,7 @@
 ^\.renvignore$
 ^\.Rproj\.user$
 ^codecov\.yml$
+^data-raw$
 ^docs$
 ^LICENSE\.md$
 ^pkgdown$
@@ -12,3 +13,4 @@
 ^renv\.lock$
 ^renv$
 ^TODO\.md$
+^vignettes/articles$
