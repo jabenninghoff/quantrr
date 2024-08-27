@@ -17,8 +17,3 @@ linters: linters_with_tags(
       except_packages = c("bit64", "data.table", "tidyverse", pkgload::pkg_name("."))
     )
   )
-exclusions: list(
-    "vignettes/articles/example.Rmd" = list(
-      commented_code_linter = c(50, 77)
-    )
-  )
