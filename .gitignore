@@ -49,6 +49,3 @@ rsconnect/
 .DS_Store
 *.swp
 ~$*
-
-# Other exclusions
-inst/doc
