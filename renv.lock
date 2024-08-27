@@ -266,13 +266,13 @@
     },
     "cpp11": {
       "Package": "cpp11",
-      "Version": "0.4.7",
+      "Version": "0.5.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R"
       ],
-      "Hash": "5a295d7d963cc5035284dcdbaf334f4e"
+      "Hash": "91570bba75d0c9d3f1040c835cee8fba"
     },
     "cranlogs": {
       "Package": "cranlogs",
@@ -326,13 +326,13 @@
     },
     "curl": {
       "Package": "curl",
-      "Version": "5.2.1",
+      "Version": "5.2.2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R"
       ],
-      "Hash": "411ca2c03b1ce5f548345d2fc2685f7a"
+      "Hash": "8f27335f2bcff4d6035edcc82d7d46de"
     },
     "cyclocomp": {
       "Package": "cyclocomp",
@@ -1105,13 +1105,13 @@
     },
     "rdev": {
       "Package": "rdev",
-      "Version": "1.11.1",
+      "Version": "1.11.2",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteUsername": "jabenninghoff",
       "RemoteRepo": "rdev",
       "RemoteRef": "main",
-      "RemoteSha": "90737bdb726b2537c7497ce642acf7fd0d65bd2d",
+      "RemoteSha": "5a0a09fd71fcdc33d3f8ad47166fc237fdaa6bb2",
       "RemoteHost": "api.github.com",
       "Requirements": [
         "checkmate",
@@ -1146,7 +1146,7 @@
         "xml2",
         "yaml"
       ],
-      "Hash": "51c362f653f18af09e10ce9839e92621"
+      "Hash": "135da09ff4562bd12fed34df101626e4"
     },
     "rematch2": {
       "Package": "rematch2",
