@@ -1,6 +1,7 @@
 ^_pkgdown\.yml$
 ^\.github$
 ^\.lintr$
+^\.renvignore$
 ^\.Rproj\.user$
 ^codecov\.yml$
 ^docs$
