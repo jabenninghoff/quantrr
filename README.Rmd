@@ -25,6 +25,15 @@ knitr::opts_chunk$set(
 
 **`r desc::desc_get_field("Title")`:** `r desc::desc_get_field("Description")`
 
+## Quick Start
+
+1. Install the latest version of R for your platform from <https://cloud.r-project.org/>. Windows
+   users will also need to install Rtools.
+1. Download and install the [Quarto CLI](https://quarto.org/docs/get-started/).
+1. Download and extract the "standalone" directory from this repository.
+1. Run `RScript setup.R` from the standalone directory to install required R packages.
+1. Run `quarto preview` from the standalone directory to build and display the example analysis.
+
 ## Installation
 
 You can install the development version of quantrr from [GitHub](https://github.com/) with:
