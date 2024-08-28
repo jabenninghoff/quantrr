@@ -1,0 +1,129 @@
+---
+title: "Introduction to quantrr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to quantrr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+quantrr is a streamlined, opinionated, "risk quant on rails" tool designed to make it easy to get started with quantifying risk using R, first introduced in my SIRAcon 2024 talk, "[UnFAIR: Simplifying and Expanding Technology Risk Quantification](https://web.cvent.com/event/7f49b0a6-bca9-46fd-8245-a2deb671efee/websitePage:23d1376e-2723-411a-910a-0edf87b03015?session=956b9176-13ad-4dac-af3c-e8ccb30bae8a&shareLink=true)." quantrr includes functions and a report template that uses data from an Excel spreadsheet to forecast one or more risks related to a technology system, such as the risk of a cybersecurity breach and the risk of unplanned outages.
+
+quantrr can be installed as a standalone application (for novice users) or integrated into your R
+development workflow (for advanced users).
+
+## Standalone
+
+The "standalone" version of quantrr provides all the files needed to create reports using quantrr,
+and is intended for those who want to get started quickly, or are new to R and don't have an
+existing development and publishing workflow.
+
+### Installing
+
+To install the standalone version of quantrr:
+
+1. Install [R](https://www.r-project.org). There are several ways to to this, but I recommend
+   following the instructions to download and install the latest version of R for your platform from
+   <https://cloud.r-project.org/>. Windows users will also need to install Rtools.
+1. Install [Quarto](https://quarto.org). Download and install the
+   [Quarto CLI](https://quarto.org/docs/get-started/). Quarto is used to generate the HTML report.
+1. Download and extract the "standalone" directory from the quantrr
+   [GitHub repository](https://github.com/jabenninghoff/quantrr). You may rename it if you like.
+1. Using the command line (Terminal on macOS, Command Prompt on Windows), navigate to the standalone
+   directory, and run the command: `RScript setup.R` to install the R packages needed to generate
+   the report.
+
+The standalone version contains an example analysis for the "Widget Management System". If
+everything is correctly installed, running the following command in the standalone directory will
+generate and launch a website locally on your system:
+
+```
+quarto preview
+```
+
+### Data Collection
+
+Collect data using a copy of the `widgetsys.xlsx` spreadsheet. The reporting tool uses only two
+tabs, "Risks" and "Estimates", all other tabs are ignored.
+
+The Risks sheet is used for scoping the assessment, and has two columns:
+
+1. "Risk", the short name of the risk, also used in the Estimates tab
+2. "Description", the long description of the risk
+
+There is no set limit on the number of risks, but each must be unique and there must be at least one
+risk.
+
+The Estimates sheet is used for gathering estimates from Subject Matter Experts, and has 6 columns:
+
+1. "Risk", the short name of the risk, which must match one of the risks in the Risk tab
+2. "Expert", the name or identifier of the SME providing the estimate
+3. "Frequency (per year)", the average number of times an event is expected to occur per year, used
+   as the value of $\lambda$ for the Poisson loss frequency distribution. Fractional values
+   represent once every $\frac{1}{x}$ years; once every 4 years is 0.25.
+4. "Low (5%)", the estimate of the low (5th percentile) value for a single loss event.
+5. "High (95%)", the estimate of the high (95th percentile) value for a single loss event.
+6. "Most Likely", the estimate of the median (50th percentile) value for a single loss event.
+
+The Low and High values are used to calculate the parameters for the log-normal loss magnitude
+distribution, and the Most Likely is used as a check to see how close the estimates fit log-normal.
+
+SMEs can provide estimates for one or more risks, and their estimates can be left blank. Typically
+this is because they have confidence in only the loss frequency *or* loss magnitude.
+
+### Reporting
+
+To generate the report, copy or replace `widgetsys.Rmd` with an updated value for `report_file`, and
+appropriate text for the Environment Statement and Import sections. Generate and preview html using
+Quarto:
+
+```
+quarto render
+quarto preview
+```
+
+For more information, see the Quarto [documentation](https://quarto.org).
+
+## Integrated
+
+The "integrated" version of quantrr consists of the quantrr package itself, and is intended for
+RStudio users who want to integrate it into their existing development and publishing workflow.
+
+### Installing
+
+quantrr is not (yet) available on [CRAN](https://cran.r-project.org). You can install the
+development version of quantrr from [GitHub](https://github.com/) using remotes:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("jabenninghoff/quantrr")
+```
+
+Or by using renv:
+
+``` r
+# install.packages("renv")
+renv::install("jabenninghoff/quantrr")
+```
+
+quantrr includes common functions and an
+[R Markdown template](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html),
+"Risk Analysis Report", that can be accessed in RStudio via File > New File > R Markdown... >
+From Template.
+
+### Data Collection
+
+As noted above, use the `widgetsys.xlsx` spreadsheet as a template for data collection.
+
+### Reporting
+
+The "Risk Analysis Report" template works as an R Notebook in RStudio, and can be published using
+any system that supports R Markdown and HTML widgets (for the dynamic plots using plotly). I publish
+to [GitHub Pages](https://pages.github.com) using [rdev](https://jabenninghoff.github.io/rdev/).
