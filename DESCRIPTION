@@ -40,6 +40,8 @@ Suggests:
     usethis,
     validate,
     withr
+VignetteBuilder: 
+    knitr
 Remotes: 
     jabenninghoff/jbplot,
     jabenninghoff/rdev
