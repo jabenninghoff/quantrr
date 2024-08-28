@@ -291,6 +291,13 @@
       ],
       "Hash": "61e097f35917d342622f21cdc79c256e"
     },
+    "collections": {
+      "Package": "collections",
+      "Version": "0.3.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "90a0eda114ab0bef170ddbf5ef0cd93f"
+    },
     "colorspace": {
       "Package": "colorspace",
       "Version": "2.1-1",
@@ -960,6 +967,30 @@
       ],
       "Hash": "b64ec208ac5bc1852b285f665d6368b3"
     },
+    "languageserver": {
+      "Package": "languageserver",
+      "Version": "0.3.16",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "callr",
+        "collections",
+        "fs",
+        "jsonlite",
+        "lintr",
+        "parallel",
+        "roxygen2",
+        "stringi",
+        "styler",
+        "tools",
+        "utils",
+        "xml2",
+        "xmlparsedata"
+      ],
+      "Hash": "f8901f44aedb6d7e7d03b5533986bd97"
+    },
     "later": {
       "Package": "later",
       "Version": "1.3.2",
@@ -1440,13 +1471,13 @@
     },
     "rdev": {
       "Package": "rdev",
-      "Version": "1.11.2",
+      "Version": "1.11.3",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteUsername": "jabenninghoff",
       "RemoteRepo": "rdev",
       "RemoteRef": "main",
-      "RemoteSha": "5a0a09fd71fcdc33d3f8ad47166fc237fdaa6bb2",
+      "RemoteSha": "af6d7491770589b17d0d397f33fbc4ee9706e29a",
       "RemoteHost": "api.github.com",
       "Requirements": [
         "checkmate",
@@ -1458,6 +1489,7 @@
         "fs",
         "gert",
         "gh",
+        "languageserver",
         "lintr",
         "miniUI",
         "mockery",
@@ -1481,7 +1513,7 @@
         "xml2",
         "yaml"
       ],
-      "Hash": "135da09ff4562bd12fed34df101626e4"
+      "Hash": "62d267cce7597ecc4ff1f1b2e6b1a209"
     },
     "readxl": {
       "Package": "readxl",
