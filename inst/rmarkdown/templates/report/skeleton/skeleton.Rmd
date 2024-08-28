@@ -4,7 +4,7 @@ author: ""
 date: '2024-00-00'
 date-modified: '2024-00-00'
 categories: []
-order
+order:
 execute:
   echo: false
 output:
@@ -12,7 +12,6 @@ output:
     theme:
       version: 5
       preset: bootstrap
-    css: assets/extra.css
     pandoc_args: --shift-heading-level-by=1
     toc: yes
     toc_float:
@@ -46,6 +45,8 @@ Add environment statement here (1-2 paragraphs).
 
 Import and validate data from Excel.
 
+Add explanation of how the data was collected here.
+
 ```{r import}
 risks <- read_xlsx(report_file, sheet = "Risks") |>
   clean_names()
@@ -73,7 +74,7 @@ validate_risks <- local({
   return(validate_out)
 })
 
-estimates <- read_xlsx("data/prototype.xlsx", sheet = "Estimates") |>
+estimates <- read_xlsx(report_file, sheet = "Estimates") |>
   clean_names() |>
   rename(
     lambda = frequency_per_yer, p05 = low_5_percent, p95 = high_95_percent, p50 = most_likely
