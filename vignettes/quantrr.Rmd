@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 
 quantrr is a streamlined, opinionated, "risk quant on rails" tool designed to make it easy to get started with quantifying risk using R, first introduced in my SIRAcon 2024 talk, "[UnFAIR: Simplifying and Expanding Technology Risk Quantification](https://web.cvent.com/event/7f49b0a6-bca9-46fd-8245-a2deb671efee/websitePage:23d1376e-2723-411a-910a-0edf87b03015?session=956b9176-13ad-4dac-af3c-e8ccb30bae8a&shareLink=true)." quantrr includes functions and a report template that uses data from an Excel spreadsheet to forecast one or more risks related to a technology system, such as the risk of a cybersecurity breach and the risk of unplanned outages.
 
+I originally wanted to name it "qrisk", but that's already [trademarked](https://qrisk.org).
+
 quantrr can be installed as a standalone application (for novice users) or integrated into your R
 development workflow (for advanced users).
 
