@@ -1,19 +1,29 @@
 project:
   type: website
+  output-dir: html
 
 website:
-  title: "standalone"
+  title: "quantrr Reports"
+  page-navigation: true
+  sidebar:
+    contents: analysis/*
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    background: light
+    search: true
+  page-footer:
+    center: "Copyright 2024"
+
+execute:
+  freeze: auto
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      light: flatly
+      dark: darkly
     toc: true
-
-
-
+    fig-width: 8.5
+    grid:
+      sidebar-width: 225px
+      body-width: 850px
+      margin-width: 225px

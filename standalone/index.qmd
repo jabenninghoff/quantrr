@@ -1,11 +1,20 @@
 ---
-title: "standalone"
+title: "quantrr reports"
+listing:
+  type: default
+  contents: analysis
+  sort-ui: true
+  filter-ui: true
+  max-description-length: 500
+  date-format: iso
+  categories: true
+  feed:
+    items: 100
+    language: en-us
 ---
 
-This is a Quarto website.
+Risk analysis reports generated using [quantrr](https://jabenninghoff.github.io/quantrr/).
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+## Reports
 
-```{r}
-1 + 1
-```
+Risk analysis Reports:

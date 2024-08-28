@@ -11,4 +11,5 @@
 ^README\.Rmd$
 ^renv\.lock$
 ^renv$
+^standalone$
 ^TODO\.md$
