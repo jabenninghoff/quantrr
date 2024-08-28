@@ -1,1 +1,4 @@
 /.quarto/
+/html/
+/_freeze/
+/analysis/*.html

@@ -1,0 +1,288 @@
+---
+title: "Widget System Risk Analysis Report"
+author: ""
+date: '2024-08-15'
+date-modified: '2024-08-28'
+categories: []
+order: 100
+execute:
+  echo: false
+output:
+  html_notebook:
+    theme:
+      version: 5
+      preset: bootstrap
+    pandoc_args: --shift-heading-level-by=1
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+---
+
+Example quantrr risk analysis of the "Widget Management System" (WMS).
+
+```{r setup, message = FALSE, warning = FALSE}
+library(quantrr)
+library(readxl)
+library(janitor)
+library(validate)
+library(dplyr)
+library(formattable)
+library(purrr)
+library(ggplot2)
+library(jbplot)
+library(plotly)
+
+# set the relative file path and name to import
+report_file <- "data/widgetsys.xlsx"
+```
+
+# Environment Statement
+
+The Widget Management System (WMS) is over 30 years old and its architecture has not changed significantly since the original implementation. Over the years, the widget system has become an integral part of our services in managing widgets for our clients. In reviewing the system, three major risks were identified: First, the age of the technology prevents updating components of the system that no longer meet contemporary cybersecurity standards, which increases the risk of a breach. Second, the system is less reliable and experiences frequent outages, typically about 2 major outages per year, which results in lost revenue, contractual penalties, and overtime pay to recover from the incident. Third, limitations of the widget system have started to affect sales - we have recently lost a customer due to the functional obsolescence of the widget system, and expect to both lose more existing and prospective customers in the future due to increased competition in the widget management market.
+
+# Import
+
+Import and validate data from Excel.
+
+The data was collected from 3 Technology SMEs, 3 Business SMEs, and one SME with experience in both. Experts were calibrated, informed by historical and industry data, and only gave estimates for areas in which they were confident in answering.
+
+```{r import}
+risks <- read_xlsx(report_file, sheet = "Risks") |>
+  clean_names()
+
+validate_risks <- local({
+  validate_rules <- validator(
+    risk_char = is.character(risk),
+    risk_not_na = !is.na(risk),
+    risk_not_blank = nchar(risk) > 0,
+    desc_char = is.character(description),
+    desc_not_na = !is.na(description),
+    desc_not_blank = nchar(description) > 0
+  )
+  validate_out <- confront(risks, validate_rules)
+  validate_summary <- summary(validate_out)
+
+  # end processing on any failures, disallow NA
+  stopifnot(
+    all(validate_summary$fails == 0),
+    all(validate_summary$nNA == 0),
+    !all(validate_summary$error),
+    !all(validate_summary$warning)
+  )
+
+  return(validate_out)
+})
+
+estimates <- read_xlsx(report_file, sheet = "Estimates") |>
+  clean_names() |>
+  rename(
+    lambda = frequency_per_yer, p05 = low_5_percent, p95 = high_95_percent, p50 = most_likely
+  )
+
+validate_estimates <- local({
+  validate_rules <- validator(
+    risk_not_na = !is.na(risk),
+    risk_match = risk %in% risks$risk,
+    expert_char = is.character(expert),
+    expert_not_na = !is.na(expert),
+    expert_not_blank = nchar(expert) > 0,
+    lambda_num = is.numeric(lambda),
+    lambda_pos = lambda > 0,
+    p05_num = is.numeric(p05),
+    p05_pos = p05 > 0,
+    p95_num = is.numeric(p95),
+    p95_pos = p95 > 0,
+    p50_num = is.numeric(p50),
+    p50_pos = p50 > 0
+  )
+
+  validate_out <- confront(estimates, validate_rules)
+  validate_summary <- summary(validate_out)
+
+  # end processing on any failures, allow NA
+  stopifnot(
+    all(validate_summary$fails == 0),
+    !all(validate_summary$error),
+    !all(validate_summary$warning)
+  )
+
+  return(validate_out)
+})
+```
+
+# Risks
+
+Risk descriptions:
+
+```{r risks}
+risks |>
+  formattable(align = "l")
+```
+
+# Forecast
+
+Forecast risk using Monte Carlo simulation. The average events and losses for each risk are
+summarized below:
+
+```{r forecast}
+consensus <- estimates |>
+  group_by(risk) |>
+  summarize(across(lambda:p50, ~ mean(.x, na.rm = TRUE)))
+
+consensus_params <- consensus |>
+  mutate(as_tibble(lnorm_param(.data$p05, .data$p95, .data$p50)))
+
+forecast <- consensus_params |>
+  select(c("risk", "lambda", "meanlog", "sdlog")) |>
+  pmap(calc_risk) |>
+  list_rbind()
+
+forecast |>
+  group_by(risk) |>
+  summarize(avg_events = mean(events), avg_losses = mean(losses)) |>
+  mutate(avg_losses = currency(avg_losses, digits = 0L)) |>
+  formattable(align = "l")
+```
+
+# Losses
+
+Losses by risk separately and in aggregate:
+
+```{r risk_hist, warning = FALSE}
+forecast |>
+  ggplot(aes(losses)) +
+  facet_grid(vars(risk)) +
+  geom_hist_bw(bins = 100) +
+  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
+  labs(x = NULL, y = NULL, title = "Losses by Risk") +
+  theme_quo()
+
+forecast |>
+  ggplot(aes(losses, fill = risk)) +
+  geom_histogram(bins = 100) +
+  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
+  labs(x = NULL, y = NULL, fill = "Risk", title = "Total Losses") +
+  scale_fill_viridis_d() +
+  theme_quo()
+```
+
+# Loss Exceedance Curves
+
+Plot loss exceedance curves for all risks and combined risk.
+
+```{r p95_max}
+# calculate the largest p95 (95% quantile), to limit the x-axis for static plots
+p95_max <- forecast |>
+  group_by(risk) |>
+  summarize(p95 = quantile(losses, 0.95)) |>
+  pull(p95) |>
+  max()
+```
+
+## By Risk
+
+Plot loss exceedance curves for each risk:
+
+```{r risk_le}
+risk_le <- forecast |>
+  ggplot(aes(losses)) +
+  facet_grid(vars(risk)) +
+  stat_ecdf(aes(y = after_stat(1 - y))) +
+  scale_y_continuous(labels = scales::label_percent()) +
+  scale_x_continuous(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
+  labs(x = NULL, y = NULL, title = "Loss Exceedance by Risk")
+
+risk_le +
+  coord_cartesian(xlim = c(0, p95_max)) +
+  theme_quo()
+```
+
+Interactive plot:
+
+```{r risk_le_plotly}
+ggplotly(risk_le + theme_minimal())
+```
+
+## Combined Risk
+
+Plot loss exceedance curve for combined risk:
+
+```{r combined_le}
+combined_le <- forecast |>
+  group_by(year) |>
+  summarize(total_losses = sum(losses)) |>
+  ggplot(aes(total_losses)) +
+  stat_ecdf(aes(y = after_stat(1 - y))) +
+  scale_y_continuous(labels = scales::label_percent()) +
+  scale_x_continuous(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
+  labs(x = NULL, y = NULL, title = "Combined Loss Exceedance")
+
+combined_le +
+  coord_cartesian(xlim = c(0, p95_max)) +
+  theme_quo()
+```
+
+Interactive plot:
+
+```{r combined_le_plotly}
+ggplotly(combined_le + theme_minimal())
+```
+
+# Appendix
+
+Additional details on the risk quantification analysis.
+
+## Validation
+
+Data validation results for Risks tab:
+
+```{r validate_risks}
+plot(validate_risks)
+```
+
+Data validation results for Estimates tab:
+
+```{r validate_estimates}
+plot(validate_estimates)
+```
+
+## Estimates
+
+All risk estimates:
+
+```{r estimates}
+estimates |>
+  mutate(across(p05:p50, ~ currency(.x, digits = 0L))) |>
+  formattable(align = "l")
+```
+
+## Consensus Estimate
+
+Using a simple average of all experts that provided an estimate (not blank/NA), this gives us a
+consensus estimate for the three risks of:
+
+```{r consensus}
+consensus |>
+  mutate(across(p05:p50, ~ currency(.x, digits = 0L))) |>
+  formattable(align = "l")
+```
+
+The consensus estimates for p05 and p95 result in the following parameters for log-normal loss
+magnitude. The p50 estimate is used to calculate the percentage difference from the actual median
+(`mdiff`), a measure of estimate accuracy:
+
+```{r consensus_params}
+consensus_params |>
+  mutate(across(p05:p50, ~ currency(.x, digits = 0L))) |>
+  mutate(mdiff = percent(mdiff)) |>
+  formattable(align = "l")
+```
+
+## Forecast Summary
+
+A `summary()` of the forecast results.
+
+```{r summary}
+summary(forecast)
+```
