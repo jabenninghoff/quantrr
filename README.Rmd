@@ -25,6 +25,9 @@ knitr::opts_chunk$set(
 
 **`r desc::desc_get_field("Title")`:** `r desc::desc_get_field("Description")`
 
+First presented as a [demo](https://jabenninghoff.github.io/security/analysis/rq-demo.html) in my
+2024 [SIRAcon](https://societyinforisk.org) talk, "[UnFAIR: Simplifying and Expanding Technology Risk Quantification](https://www.information-safety.org/2024/08/29/siracon-2024/)."
+
 ## Quick Start
 
 1. Install the latest version of R for your platform from <https://cloud.r-project.org/>. Windows
