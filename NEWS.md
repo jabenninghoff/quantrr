@@ -1,6 +1,6 @@
 # quantrr 1.0.1
 
-* Minor updates
+* Updated with links to original demo and talk
 
 # quantrr 1.0.0
 

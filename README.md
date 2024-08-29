@@ -18,6 +18,12 @@ to make it easier to quantify risk using expert estimation. Given expert
 estimates for loss frequency and magnitude, generate a report that
 forecasts losses by risk and in aggregate.
 
+First presented as a
+[demo](https://jabenninghoff.github.io/security/analysis/rq-demo.html)
+in my 2024 [SIRAcon](https://societyinforisk.org) talk, “[UnFAIR:
+Simplifying and Expanding Technology Risk
+Quantification](https://www.information-safety.org/2024/08/29/siracon-2024/).”
+
 ## Quick Start
 
 1.  Install the latest version of R for your platform from
