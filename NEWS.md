@@ -1,3 +1,7 @@
+# quantrr 1.0.1
+
+* Minor updates
+
 # quantrr 1.0.0
 
 First full release. Includes the following features:
