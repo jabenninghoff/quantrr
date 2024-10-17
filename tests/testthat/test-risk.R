@@ -27,3 +27,10 @@ test_that("calc_risk returns correct values", {
   expect_identical(test_calc$events, expected_events)
   expect_equal(test_calc$losses, expected_losses, tolerance = testthat_tolerance())
 })
+
+# gmean
+
+test_that("gmean returns correct values", {
+  values <- c(1L, 2L, 4L, 8L, 16L, 32L)
+  expect_equal(gmean(values), 5.656854249492, tolerance = testthat_tolerance())
+})

@@ -47,3 +47,16 @@ calc_risk <- function(risk, lambda, meanlog, sdlog, runs = 1e5) {
   tibble::as_tibble(list(events = events, losses = losses)) |>
     dplyr::mutate(year = dplyr::row_number(), risk = risk, .before = events)
 }
+
+#' Geometric Mean
+#'
+#' Function for the geometric mean.
+#'
+#' @inheritParams base::mean
+#' @param x a numeric or complex vector.
+#'
+#' @return Geometric mean, `exp(mean(log(x))`. `NA` values are removed if `na.rm` is `TRUE`.
+#' @export
+gmean <- function(x, na.rm = TRUE) { # nolint: object_name_linter. mean() uses na.rm.
+  exp(mean(log(x), na.rm = na.rm))
+}
