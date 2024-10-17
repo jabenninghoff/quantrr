@@ -1,3 +1,9 @@
+# quantrr 1.1.0
+
+Added new functions:
+
+* `gmean()`: calculate the geometric mean
+
 # quantrr 1.0.1
 
 * Updated with links to original demo and talk
