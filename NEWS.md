@@ -4,6 +4,8 @@ Updated Standalone Quarto site example:
 
 * Replaced `stopifnot()` in import data validation check with warnings to review validation results
 
+* Added 'typical' losses in Forecast section using the [geometric mean](https://en.wikipedia.org/wiki/Geometric_mean)
+
 Added new functions:
 
 * `gmean()`: calculate the geometric mean
