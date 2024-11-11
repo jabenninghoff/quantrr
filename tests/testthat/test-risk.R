@@ -33,4 +33,16 @@ test_that("calc_risk returns correct values", {
 test_that("gmean returns correct values", {
   values <- c(1L, 2L, 4L, 8L, 16L, 32L)
   expect_equal(gmean(values), 5.656854249492, tolerance = testthat_tolerance())
+  expect_identical(gmean(0:1e5, zero.rm = FALSE), 0)
+})
+
+test_that("gmean strips zeros by default", {
+  values <- c(1L, 2L, 4L, 8L, 16L, 32L, 0L, 0L, 0L)
+  expect_equal(gmean(values), 5.656854249492, tolerance = testthat_tolerance())
+})
+
+test_that("gmean returns NaN with negative numbers", {
+  values <- c(-1L, 1L, 2L, 4L, 8L, 16L, 32L)
+  expect_warning(gmean(values), "NaNs produced")
+  expect_identical(suppressWarnings(gmean(values)), NaN)
 })

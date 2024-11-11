@@ -4,10 +4,13 @@
 \alias{gmean}
 \title{Geometric Mean}
 \usage{
-gmean(x, na.rm = TRUE)
+gmean(x, zero.rm = TRUE, na.rm = TRUE)
 }
 \arguments{
 \item{x}{a numeric or complex vector.}
+
+\item{zero.rm}{a logical evaluating to \code{TRUE} or \code{FALSE} indicating whether \code{0} values should be
+stripped before the computation proceeds.}
 
 \item{na.rm}{a logical evaluating to \code{TRUE} or \code{FALSE}
     indicating whether \code{NA} values should be stripped before the
@@ -18,4 +21,7 @@ Geometric mean, \verb{exp(mean(log(x))}. \code{NA} values are removed if \code{n
 }
 \description{
 Function for the geometric mean.
+}
+\details{
+Returns \code{NaN} if \code{x} includes negative values.
 }
