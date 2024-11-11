@@ -1,5 +1,9 @@
 # quantrr 1.1.0
 
+Updated Standalone Quarto site example:
+
+* Replaced `stopifnot()` in import data validation check with warnings to review validation results
+
 Added new functions:
 
 * `gmean()`: calculate the geometric mean
