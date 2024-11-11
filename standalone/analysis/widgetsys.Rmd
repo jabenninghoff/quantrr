@@ -60,19 +60,10 @@ validate_risks <- local({
     desc_not_na = !is.na(description),
     desc_not_blank = nchar(description) > 0
   )
-  validate_out <- confront(risks, validate_rules)
-  validate_summary <- summary(validate_out)
-
-  # end processing on any failures, disallow NA
-  stopifnot(
-    all(validate_summary$fails == 0),
-    all(validate_summary$nNA == 0),
-    !all(validate_summary$error),
-    !all(validate_summary$warning)
-  )
-
-  return(validate_out)
+  confront(risks, validate_rules)
 })
+
+check_validation(validate_risks)
 
 estimates <- read_xlsx(report_file, sheet = "Estimates") |>
   clean_names() |>
@@ -96,19 +87,10 @@ validate_estimates <- local({
     p50_num = is.numeric(p50),
     p50_pos = p50 > 0
   )
-
-  validate_out <- confront(estimates, validate_rules)
-  validate_summary <- summary(validate_out)
-
-  # end processing on any failures, allow NA
-  stopifnot(
-    all(validate_summary$fails == 0),
-    !all(validate_summary$error),
-    !all(validate_summary$warning)
-  )
-
-  return(validate_out)
+  confront(estimates, validate_rules)
 })
+
+check_validation(validate_estimates)
 ```
 
 # Risks
