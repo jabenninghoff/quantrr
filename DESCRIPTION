@@ -15,7 +15,8 @@ BugReports: https://github.com/jabenninghoff/quantrr/issues
 Imports:
     dplyr,
     purrr,
-    tibble
+    tibble,
+    validate
 Suggests: 
     covr,
     desc,
@@ -38,7 +39,6 @@ Suggests:
     spelling,
     testthat (>= 3.0.0),
     usethis,
-    validate,
     withr
 VignetteBuilder: 
     knitr
