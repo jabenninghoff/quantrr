@@ -3,9 +3,9 @@
 test_that("check_validation raises warnings for failures, errors, or warnings", {
   out <- NULL
   warn_base <- "^one or more validation rules "
-  warn_fail <- paste0(warn_base, "had failures$")
-  warn_err <- paste0(warn_base, "resulted in an error$")
-  warn_warn <- paste0(warn_base, "resulted in a warning$")
+  warn_fail <- paste0(warn_base, "had failures")
+  warn_err <- paste0(warn_base, "resulted in an error")
+  warn_warn <- paste0(warn_base, "resulted in a warning")
 
   all_pass <- data.frame(
     name = c("rule1", "rule2"),

@@ -4,10 +4,12 @@
 \alias{check_validation}
 \title{Check validation results}
 \usage{
-check_validation(out)
+check_validation(out, sheet = NA)
 }
 \arguments{
 \item{out}{output from \code{\link[validate:confront]{validate::confront()}}.}
+
+\item{sheet}{name of sheet to pass to warning message.}
 }
 \value{
 \code{FALSE} if the validation had any failures or resulted in any errors or warnings,
