@@ -104,8 +104,8 @@ risks |>
 
 # Forecast
 
-Forecast risk using Monte Carlo simulation. The average events and losses for each risk are
-summarized below:
+Forecast risk using Monte Carlo simulation. The average events, losses, and 'typical' losses
+(geometric mean) for each risk are summarized below:
 
 ```{r forecast}
 consensus <- estimates |>
@@ -122,8 +122,8 @@ forecast <- consensus_params |>
 
 forecast |>
   group_by(risk) |>
-  summarize(avg_events = mean(events), avg_losses = mean(losses)) |>
-  mutate(avg_losses = currency(avg_losses, digits = 0L)) |>
+  summarize(avg_events = mean(events), avg_losses = mean(losses), typ_losses = gmean(losses)) |>
+  mutate(across(avg_losses:typ_losses, ~ currency(.x, digits = 0L))) |>
   formattable(align = "l")
 ```
 
