@@ -8,6 +8,8 @@ Updated Standalone Quarto site example:
 
 * Added percentage of years with no losses to the Forecast section
 
+* Loss Exceedance Curves now use a `log10` scale to improve readability
+
 Added new functions:
 
 * `gmean()`: calculate the geometric mean

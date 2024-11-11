@@ -162,30 +162,23 @@ forecast |>
 
 Plot loss exceedance curves for all risks and combined risk.
 
-```{r p95_max}
-# calculate the largest p95 (95% quantile), to limit the x-axis for static plots
-p95_max <- forecast |>
-  group_by(risk) |>
-  summarize(p95 = quantile(losses, 0.95)) |>
-  pull(p95) |>
-  max()
-```
-
 ## By Risk
 
 Plot loss exceedance curves for each risk:
 
 ```{r risk_le}
 risk_le <- forecast |>
-  ggplot(aes(losses)) +
+  group_by(risk) |>
+  mutate(probability = 1 - percent_rank(losses)) |>
+  filter(losses > 0) |>
+  ggplot(aes(losses, probability)) +
   facet_grid(vars(risk)) +
-  stat_ecdf(aes(y = after_stat(1 - y))) +
-  scale_y_continuous(labels = scales::label_percent()) +
-  scale_x_continuous(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
+  geom_line() +
+  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
+  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
   labs(x = NULL, y = NULL, title = "Loss Exceedance by Risk")
 
 risk_le +
-  coord_cartesian(xlim = c(0, p95_max)) +
   theme_quo()
 ```
 
@@ -203,14 +196,15 @@ Plot loss exceedance curve for combined risk:
 combined_le <- forecast |>
   group_by(year) |>
   summarize(total_losses = sum(losses)) |>
-  ggplot(aes(total_losses)) +
-  stat_ecdf(aes(y = after_stat(1 - y))) +
-  scale_y_continuous(labels = scales::label_percent()) +
-  scale_x_continuous(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
+  mutate(probability = 1 - percent_rank(total_losses)) |>
+  filter(total_losses > 0) |>
+  ggplot(aes(total_losses, probability)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
+  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
   labs(x = NULL, y = NULL, title = "Combined Loss Exceedance")
 
 combined_le +
-  coord_cartesian(xlim = c(0, p95_max)) +
   theme_quo()
 ```
 
