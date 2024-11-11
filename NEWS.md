@@ -4,6 +4,8 @@ Added new functions:
 
 * `gmean()`: calculate the geometric mean
 
+* `check_validation()`: raise warnings if there were issues with data validation
+
 # quantrr 1.0.1
 
 * Updated with links to original demo and talk
