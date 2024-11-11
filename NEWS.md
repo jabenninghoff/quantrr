@@ -6,6 +6,8 @@ Updated Standalone Quarto site example:
 
 * Added 'typical' losses in Forecast section using the [geometric mean](https://en.wikipedia.org/wiki/Geometric_mean)
 
+* Added percentage of years with no losses to the Forecast section
+
 Added new functions:
 
 * `gmean()`: calculate the geometric mean
