@@ -63,7 +63,7 @@ validate_risks <- local({
   confront(risks, validate_rules)
 })
 
-check_validation(validate_risks)
+check_validation(validate_risks, sheet = "Risks")
 
 estimates <- read_xlsx(report_file, sheet = "Estimates") |>
   clean_names() |>
@@ -90,7 +90,7 @@ validate_estimates <- local({
   confront(estimates, validate_rules)
 })
 
-check_validation(validate_estimates)
+check_validation(validate_estimates, sheet = "Estimates")
 ```
 
 # Risks
