@@ -52,11 +52,22 @@ calc_risk <- function(risk, lambda, meanlog, sdlog, runs = 1e5) {
 #'
 #' Function for the geometric mean.
 #'
+#' Returns `NaN` if `x` includes negative values.
+#'
 #' @inheritParams base::mean
 #' @param x a numeric or complex vector.
+#' @param zero.rm  a logical evaluating to `TRUE` or `FALSE` indicating whether `0` values should be
+#'   stripped before the computation proceeds.
 #'
 #' @return Geometric mean, `exp(mean(log(x))`. `NA` values are removed if `na.rm` is `TRUE`.
 #' @export
-gmean <- function(x, na.rm = TRUE) { # nolint: object_name_linter. mean() uses na.rm.
+gmean <- function(x, zero.rm = TRUE, na.rm = TRUE) { # nolint: object_name_linter. mean() uses na.rm
+  if (zero.rm) {
+    x <- x[x != 0]
+  }
+  if (any(x < 0)) {
+    warning("NaNs produced")
+    return(NaN)
+  }
   exp(mean(log(x), na.rm = na.rm))
 }
