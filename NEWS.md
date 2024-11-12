@@ -20,6 +20,8 @@ Other updates:
 
 * Updated Template to match Standalone site example
 
+* Add rendered standalone report sample to online documentation
+
 # quantrr 1.0.1
 
 * Updated with links to original demo and talk
