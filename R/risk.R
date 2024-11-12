@@ -56,7 +56,7 @@ calc_risk <- function(risk, lambda, meanlog, sdlog, runs = 1e5) {
 #'
 #' @inheritParams base::mean
 #' @param x a numeric or complex vector.
-#' @param zero.rm  a logical evaluating to `TRUE` or `FALSE` indicating whether `0` values should be
+#' @param zero.rm a logical evaluating to `TRUE` or `FALSE` indicating whether `0` values should be
 #'   stripped before the computation proceeds.
 #'
 #' @return Geometric mean, `exp(mean(log(x))`. `NA` values are removed if `na.rm` is `TRUE`.
