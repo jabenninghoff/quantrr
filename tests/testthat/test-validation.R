@@ -2,10 +2,12 @@
 
 test_that("check_validation raises warnings for failures, errors, or warnings", {
   out <- NULL
-  warn_base <- "^one or more validation rules "
-  warn_fail <- paste0(warn_base, "had failures")
-  warn_err <- paste0(warn_base, "resulted in an error")
-  warn_warn <- paste0(warn_base, "resulted in a warning")
+  warn_start <- "^one or more validation rules "
+  warn_fail <- "had failures"
+  warn_err <- "resulted in an error"
+  warn_warn <- "resulted in a warning"
+  warn_sheet <- " in sheet 'test'"
+  warn_end <- ", check validation results$"
 
   all_pass <- data.frame(
     name = c("rule1", "rule2"),
@@ -34,7 +36,10 @@ test_that("check_validation raises warnings for failures, errors, or warnings", 
     stringsAsFactors = FALSE
   )
   local_mocked_bindings(summary = function(...) has_fail, .package = "validate")
-  expect_warning(check_validation(out), warn_fail)
+  expect_warning(check_validation(out), paste0(warn_start, warn_fail, warn_end))
+  expect_warning(
+    check_validation(out, sheet = "test"), paste0(warn_start, warn_fail, warn_sheet, warn_end)
+  )
   expect_false(suppressWarnings(check_validation(out)))
 
   has_err <- data.frame(
@@ -49,7 +54,10 @@ test_that("check_validation raises warnings for failures, errors, or warnings", 
     stringsAsFactors = FALSE
   )
   local_mocked_bindings(summary = function(...) has_err, .package = "validate")
-  expect_warning(check_validation(out), warn_err)
+  expect_warning(check_validation(out), paste0(warn_start, warn_err, warn_end))
+  expect_warning(
+    check_validation(out, sheet = "test"), paste0(warn_start, warn_err, warn_sheet, warn_end)
+  )
   expect_false(suppressWarnings(check_validation(out)))
 
   has_warn <- data.frame(
@@ -64,6 +72,9 @@ test_that("check_validation raises warnings for failures, errors, or warnings", 
     stringsAsFactors = FALSE
   )
   local_mocked_bindings(summary = function(...) has_warn, .package = "validate")
-  expect_warning(check_validation(out), warn_warn)
+  expect_warning(check_validation(out), paste0(warn_start, warn_warn, warn_end))
+  expect_warning(
+    check_validation(out, sheet = "test"), paste0(warn_start, warn_warn, warn_sheet, warn_end)
+  )
   expect_false(suppressWarnings(check_validation(out)))
 })
