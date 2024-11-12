@@ -132,7 +132,6 @@ forecast |>
   formattable(align = "l")
 ```
 
-
 # Losses
 
 Losses by risk separately and in aggregate:
