@@ -17,7 +17,7 @@
 #' @keywords internal
 #' @noRd
 build_sample <- function(input = "standalone",
-                         output = "pkdown/assets/sample",
+                         output = "pkgdown/assets/sample",
                          as_job = FALSE,
                          clean = TRUE) {
   freeze <- fs::path_join(c(input, "_freeze"))
