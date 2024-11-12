@@ -10,11 +10,11 @@
 #'  otherwise `TRUE`, invisibly.
 #' @export
 check_validation <- function(out, sheet = NA) {
+  pass <- TRUE
   warn_start <- "one or more validation rules "
   warn_loc <- ""
-  warn_end <- ", check validation results"
-  pass <- TRUE
   if (!is.na(sheet)) warn_loc <- paste0(" in sheet '", sheet, "'")
+  warn_end <- ", check validation results"
 
   val_sum <- validate::summary(out)
   if (any(val_sum$fails > 0)) {
