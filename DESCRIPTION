@@ -31,6 +31,7 @@ Suggests:
     pkgdown,
     pkgload,
     plotly,
+    quarto,
     rdev (>= 1.11.1),
     readxl,
     remotes,
