@@ -16,6 +16,7 @@
 #'
 #' @keywords internal
 #' @noRd
+# nocov start: utility function that is not exported as part of the quantrr package
 build_sample <- function(input = "standalone",
                          output = "pkgdown/assets/sample",
                          as_job = FALSE,
@@ -30,3 +31,4 @@ build_sample <- function(input = "standalone",
   quarto::quarto_render(input = input, as_job = as_job)
   fs::dir_copy(rendered, output)
 }
+# nocov end
