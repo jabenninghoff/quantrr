@@ -24,6 +24,9 @@ in my 2024 [SIRAcon](https://societyinforisk.org) talk, “[UnFAIR:
 Simplifying and Expanding Technology Risk
 Quantification](https://www.information-safety.org/2024/08/29/siracon-2024/).”
 
+A rendered version of the standalone sample report is available
+[here](https://jabenninghoff.github.io/quantrr/sample/).
+
 ## Quick Start
 
 1.  Install the latest version of R for your platform from
