@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">quantrr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,20 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.1.0" id="quantrr-110">quantrr 1.1.0<a class="anchor" aria-label="anchor" href="#quantrr-110"></a></h2>
+<p>Updated Standalone Quarto site example:</p>
+<ul><li><p>Replaced <code><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot()</a></code> in import data validation check with warnings to review validation results</p></li>
+<li><p>Added ‘typical’ losses in Forecast section using the <a href="https://en.wikipedia.org/wiki/Geometric_mean" class="external-link">geometric mean</a></p></li>
+<li><p>Added percentage of years with no losses to the Forecast section</p></li>
+<li><p>Loss Exceedance Curves now use a <code>log10</code> scale to improve readability</p></li>
+</ul><p>Added new functions:</p>
+<ul><li><p><code><a href="../reference/gmean.html">gmean()</a></code>: calculate the geometric mean</p></li>
+<li><p><code><a href="../reference/check_validation.html">check_validation()</a></code>: raise warnings if there were issues with data validation</p></li>
+</ul><p>Other updates:</p>
+<ul><li><p>Updated Template to match Standalone site example</p></li>
+<li><p>Add rendered standalone report sample to online documentation</p></li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.1" id="quantrr-101">quantrr 1.0.1<a class="anchor" aria-label="anchor" href="#quantrr-101"></a></h2>
 <ul><li>Updated with links to original demo and talk</li>
 </ul></div>
@@ -68,7 +82,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>
