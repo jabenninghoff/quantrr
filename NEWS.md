@@ -16,6 +16,10 @@ Added new functions:
 
 * `check_validation()`: raise warnings if there were issues with data validation
 
+Other updates:
+
+* Updated Template to match Standalone site example
+
 # quantrr 1.0.1
 
 * Updated with links to original demo and talk
