@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# quantrr
+# quantrr <img src="man/figures/logo.png" align="right" alt="logo" width="120" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/jabenninghoff/quantrr/workflows/R-CMD-check/badge.svg)](https://github.com/jabenninghoff/quantrr/actions)

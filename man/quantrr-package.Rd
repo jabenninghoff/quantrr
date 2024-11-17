@@ -6,6 +6,8 @@
 \alias{quantrr-package}
 \title{quantrr: Quantify and Report (Technology) Risk}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 A streamlined tool designed to make it easier to quantify risk using expert estimation. Given expert estimates for loss frequency and magnitude, generate a report that forecasts losses by risk and in aggregate.
 }
 \seealso{

@@ -1,6 +1,8 @@
-# quantrr 1.1.0
+# quantrr 1.1.1
 
 * Improved test coverage
+
+* Added quantrr hex sticker logo
 
 # quantrr 1.1.0
 
