@@ -401,13 +401,13 @@
     },
     "curl": {
       "Package": "curl",
-      "Version": "6.0.0",
+      "Version": "6.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R"
       ],
-      "Hash": "ff51697d9205fe715f29e7171e874c6e"
+      "Hash": "e8ba62486230951fcd2b881c5be23f96"
     },
     "cyclocomp": {
       "Package": "cyclocomp",
@@ -599,7 +599,7 @@
     },
     "fontawesome": {
       "Package": "fontawesome",
-      "Version": "0.5.2",
+      "Version": "0.5.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -607,7 +607,7 @@
         "htmltools",
         "rlang"
       ],
-      "Hash": "c2efdd5f0bcd1ea861c2d4e2a883a67d"
+      "Hash": "bd1297f9b5b1fc1372d19e2c4cd82215"
     },
     "formattable": {
       "Package": "formattable",
@@ -902,13 +902,13 @@
     },
     "jbplot": {
       "Package": "jbplot",
-      "Version": "1.4.8",
+      "Version": "1.5.0",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteUsername": "jabenninghoff",
       "RemoteRepo": "jbplot",
       "RemoteRef": "main",
-      "RemoteSha": "40b3daaa4be1f04799846a03337e24c3b1838b63",
+      "RemoteSha": "855df717fbe65aae33214e59ad90b38d7d57f45d",
       "RemoteHost": "api.github.com",
       "Requirements": [
         "MASS",
@@ -917,7 +917,7 @@
         "rlang",
         "scales"
       ],
-      "Hash": "4442eff085d3e1a6f2a209f96ab47acc"
+      "Hash": "f098db60b4c4268b3118882dfe1cc5f6"
     },
     "jquerylib": {
       "Package": "jquerylib",
