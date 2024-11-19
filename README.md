@@ -41,7 +41,7 @@ vignette.
     [Lato](https://www.latofonts.com/lato-free-fonts/) font family.
 4.  Download and extract the “standalone” directory from this
     repository.
-5.  Run `RScript setup.R` from the command line in the standalone
+5.  Run `Rscript setup.R` from the command line in the standalone
     directory to install required R packages.
 6.  Run `quarto preview` from the command line in the standalone
     directory to build and display the example analysis.

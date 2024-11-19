@@ -41,7 +41,7 @@ Detailed instructions are available in the
 1. Download and install the [Quarto CLI](https://quarto.org/docs/get-started/).
 1. Download and install the [Lato](https://www.latofonts.com/lato-free-fonts/) font family.
 1. Download and extract the "standalone" directory from this repository.
-1. Run `RScript setup.R` from the command line in the standalone directory to install required R
+1. Run `Rscript setup.R` from the command line in the standalone directory to install required R
    packages.
 1. Run `quarto preview` from the command line in the standalone directory to build and display the
    example analysis.
