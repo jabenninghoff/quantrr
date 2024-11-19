@@ -1,7 +1,9 @@
 CLI
 CMD
 Changelog
+Chocolatey
 Codecov
+Homebrew
 Lato
 ORCID
 README
@@ -13,6 +15,7 @@ SMEs
 UnFAIR
 cybersecurity
 frac
+pak
 plotly
 qrisk
 quant

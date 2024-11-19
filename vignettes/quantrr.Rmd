@@ -32,16 +32,26 @@ existing development and publishing workflow.
 
 To install the standalone version of quantrr:
 
-1. Install [R](https://www.r-project.org). There are several ways to to this, but I recommend
-   following the instructions to download and install the latest version of R for your platform from
-   <https://cloud.r-project.org/>. Windows users will also need to install Rtools.
+1. Install [R](https://www.r-project.org). There are several ways to to this, but I recommend using
+   the official [binary distributions](https://cloud.r-project.org/). Windows users will also need
+   to install Rtools. R can be installed manually, using a package manager
+   ([Homebrew](https://brew.sh) for macOS, [Chocolatey](https://chocolatey.org) for Windows), or
+   with [rig](https://github.com/r-lib/rig). I
+   [currently use](https://jabenninghoff.github.io/rdev/articles/rdev.html) rig as it supports
+   installation of multiple versions of R concurrently, but don't use pak
+   (`rig install release --without-pak`) or the Posit Package Manager. Before that, I installed the
+   official binaries with Homebrew (`brew install --cask r`).
 1. Install [Quarto](https://quarto.org). Download and install the
    [Quarto CLI](https://quarto.org/docs/get-started/). Quarto is used to generate the HTML report.
+1. Download and install the [Lato](https://www.latofonts.com/lato-free-fonts/) font family. The Lato
+   font is used in the plots in the report.
 1. Download and extract the "standalone" directory from the quantrr
    [GitHub repository](https://github.com/jabenninghoff/quantrr). You may rename it if you like.
 1. Using the command line (Terminal on macOS, Command Prompt on Windows), navigate to the standalone
-   directory, and run the command: `RScript setup.R` to install the R packages needed to generate
+   directory, and run the command: `Rscript setup.R` to install the R packages needed to generate
    the report.
+
+![](Rscript.png "Rscript setup.R in macOS Terminal")
 
 The standalone version contains an example analysis for the "Widget Management System". If
 everything is correctly installed, running the following command in the standalone directory will
@@ -50,6 +60,8 @@ generate and launch a website locally on your system:
 ```
 quarto preview
 ```
+
+![](quarto.png "quarto preview in macOS Terminal")
 
 ### Data Collection
 

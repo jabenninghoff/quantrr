@@ -4,6 +4,8 @@
 
 * Added quantrr hex sticker logo
 
+* Updated installation instructions including Quick Start
+
 # quantrr 1.1.0
 
 Updated Standalone Quarto site example:
