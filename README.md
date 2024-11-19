@@ -29,17 +29,22 @@ A rendered version of the standalone sample report is available
 
 ## Quick Start
 
-1.  Install the latest version of R for your platform from
-    <https://cloud.r-project.org/>. Windows users will also need to
-    install Rtools.
+Detailed instructions are available in the [Introduction to
+quantrr](https://jabenninghoff.github.io/quantrr/articles/quantrr.html)
+vignette.
+
+1.  Install the latest version of [R](https://cloud.r-project.org/) for
+    your platform. Windows users will also need to install Rtools.
 2.  Download and install the [Quarto
     CLI](https://quarto.org/docs/get-started/).
-3.  Download and extract the “standalone” directory from this
+3.  Download and install the
+    [Lato](https://www.latofonts.com/lato-free-fonts/) font family.
+4.  Download and extract the “standalone” directory from this
     repository.
-4.  Run `RScript setup.R` from the standalone directory to install
-    required R packages.
-5.  Run `quarto preview` from the standalone directory to build and
-    display the example analysis.
+5.  Run `RScript setup.R` from the command line in the standalone
+    directory to install required R packages.
+6.  Run `quarto preview` from the command line in the standalone
+    directory to build and display the example analysis.
 
 ## Installation
 
