@@ -1,3 +1,7 @@
+# quantrr 1.1.2
+
+* Minor updates
+
 # quantrr 1.1.1
 
 * Improved test coverage
