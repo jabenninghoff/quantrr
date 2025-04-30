@@ -19,15 +19,15 @@ check_validation <- function(out, sheet = NA) {
   val_sum <- validate::summary(out)
   if (any(val_sum$fails > 0)) {
     pass <- FALSE
-    warning(warn_start, "had failures", warn_loc, warn_end)
+    warning(warn_start, "had failures", warn_loc, warn_end, call. = FALSE)
   }
   if (any(val_sum$error)) {
     pass <- FALSE
-    warning(warn_start, "resulted in an error", warn_loc, warn_end)
+    warning(warn_start, "resulted in an error", warn_loc, warn_end, call. = FALSE)
   }
   if (any(val_sum$warning)) {
     pass <- FALSE
-    warning(warn_start, "resulted in a warning", warn_loc, warn_end)
+    warning(warn_start, "resulted in a warning", warn_loc, warn_end, call. = FALSE)
   }
 
   return(invisible(pass))
