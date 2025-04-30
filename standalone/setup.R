@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript
 # install or update all packages needed by quantrr
 
 writeLines("Installing required R packages from CRAN...\n")
