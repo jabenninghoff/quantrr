@@ -18,10 +18,10 @@
 lnorm_param <- function(p05, p95, p50) {
   meanlog <- ((log(p95) - log(p05)) / 2) + log(p05)
   sdlog <- (log(p95) - log(p05)) / (2 * stats::qnorm(0.95))
-  median <- stats::qlnorm(0.5, meanlog = meanlog, sdlog = sdlog)
-  mdiff <- (p50 - median) / median
+  lnorm_median <- stats::qlnorm(0.5, meanlog = meanlog, sdlog = sdlog)
+  mdiff <- (p50 - lnorm_median) / lnorm_median
 
-  return(list(meanlog = meanlog, sdlog = sdlog, mdiff = mdiff))
+  list(meanlog = meanlog, sdlog = sdlog, mdiff = mdiff)
 }
 
 #' Calculate Risk
@@ -66,7 +66,7 @@ gmean <- function(x, zero.rm = TRUE, na.rm = TRUE) { # nolint: object_name_linte
     x <- x[x != 0]
   }
   if (any(x < 0)) {
-    warning("NaNs produced")
+    warning("NaNs produced", call. = FALSE)
     return(NaN)
   }
   exp(mean(log(x), na.rm = na.rm))

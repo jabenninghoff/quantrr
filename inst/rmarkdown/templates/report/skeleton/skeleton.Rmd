@@ -1,8 +1,8 @@
 ---
 title: "TEMPLATE Risk Analysis Report"
 author: ""
-date: '2024-00-00'
-date-modified: '2024-00-00'
+date: '2025-00-00'
+date-modified: '2025-00-00'
 categories: []
 order:
 execute:
@@ -33,6 +33,10 @@ library(ggplot2)
 library(jbplot)
 library(plotly)
 
+# TODO: workaround for https://github.com/r-lib/lintr/issues/2790, update when
+#   https://github.com/data-cleaning/validate/pull/197 is released (1.1.6+)
+is.nzchar <- nzchar # nolint: object_name_linter.
+
 # set the relative file path and name to import
 report_file <- "data/file.xlsx"
 ```
@@ -55,10 +59,10 @@ validate_risks <- local({
   validate_rules <- validator(
     risk_char = is.character(risk),
     risk_not_na = !is.na(risk),
-    risk_not_blank = nchar(risk) > 0,
+    risk_not_blank = is.nzchar(risk, keep_na = TRUE),
     desc_char = is.character(description),
     desc_not_na = !is.na(description),
-    desc_not_blank = nchar(description) > 0
+    desc_not_blank = is.nzchar(risk, keep_na = TRUE)
   )
   confront(risks, validate_rules)
 })
@@ -77,7 +81,7 @@ validate_estimates <- local({
     risk_match = risk %in% risks$risk,
     expert_char = is.character(expert),
     expert_not_na = !is.na(expert),
-    expert_not_blank = nchar(expert) > 0,
+    expert_not_blank = is.nzchar(expert, keep_na = TRUE),
     lambda_num = is.numeric(lambda),
     lambda_pos = lambda > 0,
     p05_num = is.numeric(p05),
@@ -98,8 +102,7 @@ check_validation(validate_estimates, sheet = "Estimates")
 Risk descriptions:
 
 ```{r risks}
-risks |>
-  formattable(align = "l")
+formattable(risks, align = "l")
 ```
 
 # Forecast
@@ -127,8 +130,10 @@ forecast |>
     avg_events = mean(events), avg_losses = mean(losses), typ_losses = gmean(losses),
     no_losses = mean(no_losses)
   ) |>
-  mutate(across(avg_losses:typ_losses, ~ currency(.x, digits = 0L))) |>
-  mutate(no_losses = percent(no_losses)) |>
+  mutate(
+    across(avg_losses:typ_losses, ~ currency(.x, digits = 0L)),
+    no_losses = percent(no_losses)
+  ) |>
   formattable(align = "l")
 ```
 
@@ -258,8 +263,7 @@ magnitude. The p50 estimate is used to calculate the percentage difference from 
 
 ```{r consensus_params}
 consensus_params |>
-  mutate(across(p05:p50, ~ currency(.x, digits = 0L))) |>
-  mutate(mdiff = percent(mdiff)) |>
+  mutate(across(p05:p50, ~ currency(.x, digits = 0L)), mdiff = percent(mdiff)) |>
   formattable(align = "l")
 ```
 
