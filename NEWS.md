@@ -1,3 +1,7 @@
+# quantrr 1.1.3
+
+* Updated for R 4.5.0
+
 # quantrr 1.1.2
 
 * Minor updates
