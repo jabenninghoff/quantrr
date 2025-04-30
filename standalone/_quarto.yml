@@ -11,13 +11,16 @@ website:
     background: light
     search: true
   page-footer:
-    center: "Copyright 2024"
+    left: "Report generated with [quantrr](https://jabenninghoff.github.io/quantrr/)"
+    center: "Copyright 2025"
+    right: "Rendered with Quarto {{< version >}}"
 
 execute:
   freeze: auto
 
 format:
   html:
+    respect-user-color-scheme: true
     theme:
       light: flatly
       dark: darkly
