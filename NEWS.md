@@ -2,6 +2,8 @@
 
 * Updated for R 4.5.0
 
+* Updated for Quarto 1.7
+
 # quantrr 1.1.2
 
 * Minor updates
