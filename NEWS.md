@@ -4,6 +4,8 @@
 
 * Updated for Quarto 1.7
 
+* Added code folding to template and example
+
 # quantrr 1.1.2
 
 * Minor updates

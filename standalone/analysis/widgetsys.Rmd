@@ -2,11 +2,15 @@
 title: "Widget System Risk Analysis Report"
 author: ""
 date: '2024-08-15'
-date-modified: '2025-04-30'
+date-modified: '2025-05-14'
 categories: []
 order: 100
-execute:
-  echo: false
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    # TODO: code-link not working in this report
+    # code-link: true
 output:
   html_notebook:
     theme:
