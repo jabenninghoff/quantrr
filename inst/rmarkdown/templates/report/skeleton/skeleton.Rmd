@@ -5,8 +5,12 @@ date: '2025-00-00'
 date-modified: '2025-00-00'
 categories: []
 order:
-execute:
-  echo: false
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    # TODO: code-link not working in this report
+    # code-link: true
 output:
   html_notebook:
     theme:
