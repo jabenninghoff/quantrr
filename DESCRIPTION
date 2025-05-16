@@ -12,6 +12,8 @@ License: MIT + file LICENSE
 URL: https://jabenninghoff.github.io/quantrr/,
     https://github.com/jabenninghoff/quantrr
 BugReports: https://github.com/jabenninghoff/quantrr/issues
+Depends:
+    R (>= 4.1.0)
 Imports:
     dplyr,
     purrr,
