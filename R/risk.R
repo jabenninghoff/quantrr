@@ -40,7 +40,8 @@ lnorm_param <- function(p05, p95, p50) {
 #'         of losses (`losses`) for each run.
 #'
 #' @export
-calc_risk <- function(risk, lambda, meanlog, sdlog, runs = 1e5) {
+# default runs reduced from 1e5 to 50000 to fix code-link and improve performance
+calc_risk <- function(risk, lambda, meanlog, sdlog, runs = 50000) {
   events <- stats::rpois(runs, lambda)
   losses <- purrr::map_dbl(events, \(n) sum(stats::rlnorm(n, meanlog, sdlog)))
 
