@@ -1,3 +1,7 @@
+# quantrr 1.1.4
+
+* Reduce number of simulations in `calc_risk()` to resolve `code-link` issue and improve performance
+
 # quantrr 1.1.3
 
 * Updated for R 4.5.0
