@@ -1,9 +1,11 @@
-#!/usr/bin/env Rscript
 # install or update all packages needed by quantrr
 
 writeLines("Installing required R packages from CRAN...\n")
 install.packages(
-  c("dplyr", "formattable", "ggplot2", "janitor", "plotly", "purrr", "readxl", "tibble", "validate")
+  c(
+    "downlit", "dplyr", "formattable", "ggplot2", "janitor", "plotly",
+    "purrr", "quarto", "readxl", "tibble", "validate", "xml2"
+  )
 )
 
 writeLines("Installing required R packages from GitHub...\n")
