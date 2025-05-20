@@ -1,4 +1,4 @@
-# quantrr 1.2.0
+# quantrr 1.1.5
 
 * Removed dependency on Lato font family
 
