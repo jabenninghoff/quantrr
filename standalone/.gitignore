@@ -1,4 +1,4 @@
-/.quarto/
-/html/
 /_freeze/
+/.quarto/
 /analysis/*.html
+/html/
