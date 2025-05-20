@@ -44,8 +44,6 @@ To install the standalone version of quantrr:
 1. Install [Quarto](https://quarto.org). Download and install the
    [Quarto CLI](https://quarto.org/docs/get-started/). Quarto is used to generate the HTML report.
    (`brew install quarto`)
-1. Download and install the [Lato](https://www.latofonts.com/lato-free-fonts/) font family. The Lato
-   font is used in the plots in the report. (`brew install font-lato`)
 1. Download and extract the "standalone" directory from the quantrr
    [GitHub repository](https://github.com/jabenninghoff/quantrr). You may rename it if you like.
 1. Using the command line (Terminal on macOS, Command Prompt on Windows), navigate to the standalone

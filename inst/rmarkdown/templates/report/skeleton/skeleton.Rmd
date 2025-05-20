@@ -33,7 +33,6 @@ library(dplyr)
 library(formattable)
 library(purrr)
 library(ggplot2)
-library(jbplot)
 library(plotly)
 
 # TODO: workaround for https://github.com/r-lib/lintr/issues/2790, update when
@@ -150,10 +149,10 @@ forecast |>
   filter(losses > 0) |>
   ggplot(aes(losses)) +
   facet_grid(vars(risk)) +
-  geom_hist_bw(bins = 100) +
+  geom_histogram(color = "black", fill = "white", bins = 100) +
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
   labs(x = NULL, y = NULL, title = "Losses by Risk") +
-  theme_quo()
+  theme_minimal()
 
 forecast |>
   filter(losses > 0) |>
@@ -162,7 +161,7 @@ forecast |>
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
   labs(x = NULL, y = NULL, fill = "Risk", title = "Total Losses") +
   scale_fill_viridis_d() +
-  theme_quo()
+  theme_minimal()
 ```
 
 # Loss Exceedance Curves
@@ -183,16 +182,16 @@ risk_le <- forecast |>
   geom_line() +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
-  labs(x = NULL, y = NULL, title = "Loss Exceedance by Risk")
+  labs(x = NULL, y = NULL, title = "Loss Exceedance by Risk") +
+  theme_minimal()
 
-risk_le +
-  theme_quo()
+risk_le
 ```
 
 Interactive plot:
 
 ```{r risk_le_plotly}
-ggplotly(risk_le + theme_minimal())
+ggplotly(risk_le)
 ```
 
 ## Combined Risk
@@ -209,16 +208,16 @@ combined_le <- forecast |>
   geom_line() +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
-  labs(x = NULL, y = NULL, title = "Combined Loss Exceedance")
+  labs(x = NULL, y = NULL, title = "Combined Loss Exceedance") +
+  theme_minimal()
 
-combined_le +
-  theme_quo()
+combined_le
 ```
 
 Interactive plot:
 
 ```{r combined_le_plotly}
-ggplotly(combined_le + theme_minimal())
+ggplotly(combined_le)
 ```
 
 # Appendix

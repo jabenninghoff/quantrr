@@ -1,3 +1,7 @@
+# quantrr 1.2.0
+
+* Removed dependency on Lato font family
+
 # quantrr 1.1.4
 
 * Reduce number of simulations in `calc_risk()` to resolve `code-link` issue and improve performance

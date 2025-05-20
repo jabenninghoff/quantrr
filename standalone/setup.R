@@ -8,6 +8,6 @@ install.packages(
 
 writeLines("Installing required R packages from GitHub...\n")
 install.packages("remotes")
-remotes::install_github(c("jabenninghoff/jbplot", "jabenninghoff/quantrr"))
+remotes::install_github("jabenninghoff/quantrr")
 
 writeLines("Installation complete!")

@@ -37,13 +37,11 @@ vignette.
     your platform. Windows users will also need to install Rtools.
 2.  Download and install the [Quarto
     CLI](https://quarto.org/docs/get-started/).
-3.  Download and install the
-    [Lato](https://www.latofonts.com/lato-free-fonts/) font family.
-4.  Download and extract the “standalone” directory from this
+3.  Download and extract the “standalone” directory from this
     repository.
-5.  Run `Rscript setup.R` from the command line in the standalone
+4.  Run `Rscript setup.R` from the command line in the standalone
     directory to install required R packages.
-6.  Run `quarto preview` from the command line in the standalone
+5.  Run `quarto preview` from the command line in the standalone
     directory to build and display the example analysis.
 
 ## Installation
