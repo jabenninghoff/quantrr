@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">quantrr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,44 +93,87 @@ users). A rendered version of the standalone sample report is available
 <p>The “standalone” version of quantrr provides all the files needed to
 create reports using quantrr, and is intended for those who want to get
 started quickly, or are new to R and don’t have an existing development
-and publishing workflow.</p>
+and publishing workflow. The standalone version requires <a href="https://www.r-project.org" class="external-link">R</a> and <a href="https://quarto.org" class="external-link">Quarto</a>.</p>
+<p>Note that there are many ways to install and use R and Quarto to
+generate reports. The instructions here are designed to make it easy to
+get started with quantrr. For other approaches, consult the R and quarto
+documentation. My setup is documented in <a href="https://jabenninghoff.github.io/rdev/articles/rdev.html" class="external-link">rdev</a>.</p>
 <div class="section level3">
-<h3 id="installing">Installing<a class="anchor" aria-label="anchor" href="#installing"></a>
+<h3 id="install---windows">Install - Windows<a class="anchor" aria-label="anchor" href="#install---windows"></a>
 </h3>
-<p>To install the standalone version of quantrr:</p>
+<p>To install the standalone version of quantrr on Windows:</p>
 <ol style="list-style-type: decimal">
-<li>Install <a href="https://www.r-project.org" class="external-link">R</a>. There are several
-ways to to this, but I recommend using the official <a href="https://cloud.r-project.org/" class="external-link">binary distributions</a>. Windows
-users will also need to install Rtools. R can be installed manually,
-using a package manager (<a href="https://brew.sh" class="external-link">Homebrew</a> for
-macOS, <a href="https://chocolatey.org" class="external-link">Chocolatey</a> for Windows), or
-with <a href="https://github.com/r-lib/rig" class="external-link">rig</a>. I <a href="https://jabenninghoff.github.io/rdev/articles/rdev.html" class="external-link">currently
-use</a> rig as it supports installation of multiple versions of R
-concurrently, but don’t use pak
-(<code>rig install release --without-pak</code>) or the Posit Package
-Manager. Before that, I installed the official binaries with Homebrew
-(<code>brew install --cask r</code>).</li>
-<li>Install <a href="https://quarto.org" class="external-link">Quarto</a>. Download and
-install the <a href="https://quarto.org/docs/get-started/" class="external-link">Quarto
-CLI</a>. Quarto is used to generate the HTML report.
-(<code>brew install quarto</code>)</li>
-<li>Download and install the <a href="https://www.latofonts.com/lato-free-fonts/" class="external-link">Lato</a> font family.
-The Lato font is used in the plots in the report.
-(<code>brew install font-lato</code>)</li>
-<li>Download and extract the “standalone” directory from the quantrr <a href="https://github.com/jabenninghoff/quantrr" class="external-link">GitHub repository</a>.
-You may rename it if you like.</li>
-<li>Using the command line (Terminal on macOS, Command Prompt on
-Windows), navigate to the standalone directory, and run the command:
-<code>Rscript setup.R</code> to install the R packages needed to
-generate the report.</li>
+<li>Download and install the latest version of <a href="https://cloud.r-project.org/bin/windows/base/release.html" class="external-link">R for
+Windows</a>.</li>
+<li>Download and install <a href="https://quarto.org/docs/get-started/" class="external-link">Quarto CLI</a>.</li>
+<li>From the “code” menu at <a href="https://github.com/jabenninghoff/quantrr/" class="external-link uri">https://github.com/jabenninghoff/quantrr/</a>, select
+“Download ZIP”.</li>
+<li>Extract the “standalone” directory from the ZIP file and move it to
+“Documents”</li>
+<li>Launch R, and run the following commands:</li>
 </ol>
-<p><img src="Rscript.png" title="Rscript setup.R in macOS Terminal"></p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="st">"standalone"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"setup.R"</span><span class="op">)</span></span></code></pre></div>
+<p>You should see the following in the R console before executing
+<code>source("setup.R")</code>:</p>
+<p><img src="windows-console.png" title="setup.R in Windows R Console"></p>
+<p>You may see some additional prompts: “Would you like to use a
+personal library instead?” and “Would you like to create a personal
+library <path> to install packages into?” If you do, select “Yes” for
+both. Additionally, when prompted, choose a Secure CRAN mirror (“0-Cloud
+[https]”).</path></p>
+</div>
+<div class="section level3">
+<h3 id="install---macos">Install - macOS<a class="anchor" aria-label="anchor" href="#install---macos"></a>
+</h3>
+<p>To install the standalone version of quantrr on macOS:</p>
+<ol style="list-style-type: decimal">
+<li>Download and install the latest version of <a href="https://cloud.r-project.org/bin/macosx/" class="external-link">R for macOS</a>. Choose
+the appropriate version for your hardware (Apple silicon or Intel).</li>
+<li>Download and install <a href="https://quarto.org/docs/get-started/" class="external-link">Quarto CLI</a>.</li>
+<li>From the “code” menu at <a href="https://github.com/jabenninghoff/quantrr/" class="external-link uri">https://github.com/jabenninghoff/quantrr/</a>, select
+“Download ZIP”.</li>
+<li>Extract the “standalone” directory from the ZIP file and move it to
+your home directory (“/Users/<username>”).</username>
+</li>
+<li>Launch R, and run the following commands:</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="st">"standalone"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"setup.R"</span><span class="op">)</span></span></code></pre></div>
+<p>You should see the following in the R console before executing
+<code>source("setup.R")</code>:</p>
+<p><img src="macos-console.png" title="setup.R in macOS R Console"></p>
+<p>When prompted, choose a Secure CRAN mirror (“0-Cloud [https]”). If
+you are asked to install the command line developer tools, please do
+so.</p>
+</div>
+<div class="section level3">
+<h3 id="standalone-preview">Standalone Preview<a class="anchor" aria-label="anchor" href="#standalone-preview"></a>
+</h3>
 <p>The standalone version contains an example analysis for the “Widget
 Management System”. If everything is correctly installed, running the
-following command in the standalone directory will generate and launch a
-website locally on your system:</p>
-<pre><code>quarto preview</code></pre>
-<p><img src="quarto.png" title="quarto preview in macOS Terminal"></p>
+following command in the R Console will generate and launch a website
+locally on your system:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"preview.R"</span><span class="op">)</span></span></code></pre></div>
+<p>Each time you launch R, you will need to set the working directory to
+the standalone directory using <code>setwd("standalone")</code>. There
+are three scripts you can use to build and manage the report:</p>
+<ul>
+<li>
+<code>source("preview.R")</code> - generates and launches the report
+in a web browser</li>
+<li>
+<code>source("render.R")</code> - generates the report and saves it
+to the html directory</li>
+<li>
+<code>source("clean.R")</code> - deletes all quarto intermediate
+files and the html directory</li>
+</ul>
 </div>
 <div class="section level3">
 <h3 id="data-collection">Data Collection<a class="anchor" aria-label="anchor" href="#data-collection"></a>
@@ -182,8 +225,9 @@ only the loss frequency <em>or</em> loss magnitude.</p>
 with an updated value for <code>report_file</code>, and appropriate text
 for the Environment Statement and Import sections. Generate and preview
 html using Quarto:</p>
-<pre><code>quarto render
-quarto preview</code></pre>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"render.R"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"preview.R"</span><span class="op">)</span></span></code></pre></div>
 <p>For more information, see the Quarto <a href="https://quarto.org" class="external-link">documentation</a>.</p>
 </div>
 </div>
@@ -194,15 +238,15 @@ quarto preview</code></pre>
 itself, and is intended for RStudio users who want to integrate it into
 their existing development and publishing workflow.</p>
 <div class="section level3">
-<h3 id="installing-1">Installing<a class="anchor" aria-label="anchor" href="#installing-1"></a>
+<h3 id="installing">Installing<a class="anchor" aria-label="anchor" href="#installing"></a>
 </h3>
 <p>quantrr is not (yet) available on <a href="https://cran.r-project.org" class="external-link">CRAN</a>. You can install the
 development version of quantrr from <a href="https://github.com/" class="external-link">GitHub</a> using remotes:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jabenninghoff/quantrr"</span><span class="op">)</span></span></code></pre></div>
 <p>Or by using renv:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("renv")</span></span>
 <span><span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"jabenninghoff/quantrr"</span><span class="op">)</span></span></code></pre></div>
 <p>quantrr includes common functions and an <a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html" class="external-link">R
