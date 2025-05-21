@@ -26,41 +26,81 @@ available [here](../sample/).
 
 The "standalone" version of quantrr provides all the files needed to create reports using quantrr,
 and is intended for those who want to get started quickly, or are new to R and don't have an
-existing development and publishing workflow.
+existing development and publishing workflow. The standalone version requires
+[R](https://www.r-project.org) and [Quarto](https://quarto.org).
 
-### Installing
+Note that there are many ways to install and use R and Quarto to generate reports. The instructions
+here are designed to make it easy to get started with quantrr. For other approaches, consult the R
+and quarto documentation. My setup is documented in
+[rdev](https://jabenninghoff.github.io/rdev/articles/rdev.html).
 
-To install the standalone version of quantrr:
+### Install - Windows
 
-1. Install [R](https://www.r-project.org). There are several ways to to this, but I recommend using
-   the official [binary distributions](https://cloud.r-project.org/). Windows users will also need
-   to install Rtools. R can be installed manually, using a package manager
-   ([Homebrew](https://brew.sh) for macOS, [Chocolatey](https://chocolatey.org) for Windows), or
-   with [rig](https://github.com/r-lib/rig). I
-   [currently use](https://jabenninghoff.github.io/rdev/articles/rdev.html) rig as it supports
-   installation of multiple versions of R concurrently, but don't use pak
-   (`rig install release --without-pak`) or the Posit Package Manager. Before that, I installed the
-   official binaries with Homebrew (`brew install --cask r`).
-1. Install [Quarto](https://quarto.org). Download and install the
-   [Quarto CLI](https://quarto.org/docs/get-started/). Quarto is used to generate the HTML report.
-   (`brew install quarto`)
-1. Download and extract the "standalone" directory from the quantrr
-   [GitHub repository](https://github.com/jabenninghoff/quantrr). You may rename it if you like.
-1. Using the command line (Terminal on macOS, Command Prompt on Windows), navigate to the standalone
-   directory, and run the command: `Rscript setup.R` to install the R packages needed to generate
-   the report.
+To install the standalone version of quantrr on Windows:
 
-![](Rscript.png "Rscript setup.R in macOS Terminal")
+1. Download and install the latest version of
+   [R for Windows](https://cloud.r-project.org/bin/windows/base/release.html).
+1. Download and install [Quarto CLI](https://quarto.org/docs/get-started/).
+1. From the "code" menu at <https://github.com/jabenninghoff/quantrr/>, select "Download ZIP".
+1. Extract the "standalone" directory from the ZIP file and move it to "Documents"
+1. Launch R, and run the following commands:
+
+``` r
+setwd("standalone")
+dir()
+source("setup.R")
+```
+
+You should see the following in the R console before executing `source("setup.R")`:
+
+![](windows-console.png "setup.R in Windows R Console")
+
+You may see some additional prompts: "Would you like to use a personal library instead?" and "Would
+you like to create a personal library <PATH> to install packages into?" If you do, select "Yes" for
+both. Additionally, when prompted, choose a Secure CRAN mirror ("0-Cloud [https]").
+
+### Install - macOS
+
+To install the standalone version of quantrr on macOS:
+
+1. Download and install the latest version of
+   [R for macOS](https://cloud.r-project.org/bin/macosx/). Choose the appropriate version for your
+   hardware (Apple silicon or Intel).
+1. Download and install [Quarto CLI](https://quarto.org/docs/get-started/).
+1. From the "code" menu at <https://github.com/jabenninghoff/quantrr/>, select "Download ZIP".
+1. Extract the "standalone" directory from the ZIP file and move it to your home directory
+   ("/Users/<username>").
+1. Launch R, and run the following commands:
+
+``` r
+setwd("standalone")
+dir()
+source("setup.R")
+```
+
+You should see the following in the R console before executing `source("setup.R")`:
+
+![](macos-console.png "setup.R in macOS R Console")
+
+When prompted, choose a Secure CRAN mirror ("0-Cloud [https]"). If you are asked to install the
+command line developer tools, please do so.
+
+### Standalone Preview
 
 The standalone version contains an example analysis for the "Widget Management System". If
-everything is correctly installed, running the following command in the standalone directory will
-generate and launch a website locally on your system:
+everything is correctly installed, running the following command in the R Console will generate and
+launch a website locally on your system:
 
-```
-quarto preview
+``` r
+source("preview.R")
 ```
 
-![](quarto.png "quarto preview in macOS Terminal")
+Each time you launch R, you will need to set the working directory to the standalone directory
+using `setwd("standalone")`. There are three scripts you can use to build and manage the report:
+
+- `source("preview.R")` - generates and launches the report in a web browser
+- `source("render.R")` - generates the report and saves it to the html directory
+- `source("clean.R")` - deletes all quarto intermediate files and the html directory
 
 ### Data Collection
 
@@ -98,9 +138,9 @@ To generate the report, copy or replace `widgetsys.Rmd` with an updated value fo
 appropriate text for the Environment Statement and Import sections. Generate and preview html using
 Quarto:
 
-```
-quarto render
-quarto preview
+``` r
+source("render.R")
+source("preview.R")
 ```
 
 For more information, see the Quarto [documentation](https://quarto.org).
