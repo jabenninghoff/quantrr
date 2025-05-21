@@ -36,14 +36,12 @@ A rendered version of the standalone sample report is available
 Detailed instructions are available in the
 [Introduction to quantrr](https://jabenninghoff.github.io/quantrr/articles/quantrr.html) vignette.
 
-1. Install the latest version of [R](https://cloud.r-project.org/) for your platform. Windows users
-   will also need to install Rtools.
+1. Install the latest version of [R](https://cloud.r-project.org/) for your platform.
 1. Download and install the [Quarto CLI](https://quarto.org/docs/get-started/).
 1. Download and extract the "standalone" directory from this repository.
-1. Run `Rscript setup.R` from the command line in the standalone directory to install required R
-   packages.
-1. Run `quarto preview` from the command line in the standalone directory to build and display the
-   example analysis.
+1. Launch R and set the working directory to the "standalone" directory.
+1. Run `source("setup.R")` to install the required R packages.
+1. Run `source("preview.R")` to build and display the example analysis.
 
 ## Installation
 
