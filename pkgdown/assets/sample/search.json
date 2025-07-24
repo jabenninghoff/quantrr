@@ -28,7 +28,7 @@
     "href": "analysis/widgetsys.html#by-risk",
     "title": "Widget System Risk Analysis Report",
     "section": "By Risk",
-    "text": "By Risk\nPlot loss exceedance curves for each risk:\n\nCoderisk_le &lt;- forecast |&gt;\n  group_by(risk) |&gt;\n  mutate(probability = 1 - percent_rank(losses)) |&gt;\n  filter(losses &gt; 0) |&gt;\n  ggplot(aes(losses, probability)) +\n  facet_grid(vars(risk)) +\n  geom_line() +\n  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +\n  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +\n  labs(x = NULL, y = NULL, title = \"Loss Exceedance by Risk\") +\n  theme_minimal()\n\nrisk_le\n\n\n\n\n\n\n\nInteractive plot:\n\nCodeggplotly(risk_le)",
+    "text": "By Risk\nPlot loss exceedance curves for each risk:\n\nCoderisk_le &lt;- forecast |&gt;\n  group_by(risk) |&gt;\n  mutate(probability = 1 - percent_rank(losses)) |&gt;\n  filter(losses &gt; 0) |&gt;\n  ungroup() |&gt;\n  mutate(losses = currency(losses, digits = 0), probability = percent(probability)) |&gt;\n  ggplot(aes(losses, probability)) +\n  facet_grid(vars(risk)) +\n  geom_line() +\n  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +\n  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +\n  labs(x = NULL, y = NULL, title = \"Loss Exceedance by Risk\") +\n  theme_minimal()\n\nrisk_le\n\n\n\n\n\n\n\nInteractive plot:\n\nCodeggplotly(risk_le)",
     "crumbs": [
       "Widget System Risk Analysis Report"
     ]
@@ -38,7 +38,7 @@
     "href": "analysis/widgetsys.html#combined-risk",
     "title": "Widget System Risk Analysis Report",
     "section": "Combined Risk",
-    "text": "Combined Risk\nPlot loss exceedance curve for combined risk:\n\nCodecombined_le &lt;- forecast |&gt;\n  group_by(year) |&gt;\n  summarize(total_losses = sum(losses)) |&gt;\n  mutate(probability = 1 - percent_rank(total_losses)) |&gt;\n  filter(total_losses &gt; 0) |&gt;\n  ggplot(aes(total_losses, probability)) +\n  geom_line() +\n  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +\n  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +\n  labs(x = NULL, y = NULL, title = \"Combined Loss Exceedance\") +\n  theme_minimal()\n\ncombined_le\n\n\n\n\n\n\n\nInteractive plot:\n\nCodeggplotly(combined_le)",
+    "text": "Combined Risk\nPlot loss exceedance curve for combined risk:\n\nCodecombined_le &lt;- forecast |&gt;\n  group_by(year) |&gt;\n  summarize(total_losses = sum(losses)) |&gt;\n  mutate(probability = 1 - percent_rank(total_losses)) |&gt;\n  filter(total_losses &gt; 0) |&gt;\n  ungroup() |&gt;\n  mutate(total_losses = currency(total_losses, digits = 0), probability = percent(probability)) |&gt;\n  ggplot(aes(total_losses, probability)) +\n  geom_line() +\n  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +\n  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +\n  labs(x = NULL, y = NULL, title = \"Combined Loss Exceedance\") +\n  theme_minimal()\n\ncombined_le\n\n\n\n\n\n\n\nInteractive plot:\n\nCodeggplotly(combined_le)",
     "crumbs": [
       "Widget System Risk Analysis Report"
     ]
@@ -78,7 +78,7 @@
     "href": "analysis/widgetsys.html#forecast-summary",
     "title": "Widget System Risk Analysis Report",
     "section": "Forecast Summary",
-    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year           risk               events           losses         \n Min.   :    1   Length:150000      Min.   : 0.000   Min.   :0.000e+00  \n 1st Qu.:12501   Class :character   1st Qu.: 0.000   1st Qu.:0.000e+00  \n Median :25000   Mode  :character   Median : 1.000   Median :3.561e+04  \n Mean   :25000                      Mean   : 1.416   Mean   :5.553e+06  \n 3rd Qu.:37500                      3rd Qu.: 2.000   3rd Qu.:1.464e+06  \n Max.   :50000                      Max.   :10.000   Max.   :1.358e+10",
+    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year           risk               events           losses         \n Min.   :    1   Length:150000      Min.   : 0.000   Min.   :0.000e+00  \n 1st Qu.:12501   Class :character   1st Qu.: 0.000   1st Qu.:0.000e+00  \n Median :25000   Mode  :character   Median : 1.000   Median :3.519e+04  \n Mean   :25000                      Mean   : 1.417   Mean   :5.844e+06  \n 3rd Qu.:37500                      3rd Qu.: 2.000   3rd Qu.:1.442e+06  \n Max.   :50000                      Max.   :11.000   Max.   :9.880e+10",
     "crumbs": [
       "Widget System Risk Analysis Report"
     ]
