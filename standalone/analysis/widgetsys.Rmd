@@ -2,7 +2,7 @@
 title: "Widget System Risk Analysis Report"
 author: ""
 date: '2024-08-15'
-date-modified: '2025-05-16'
+date-modified: '2025-07-24'
 categories: []
 order: 100
 format:
@@ -177,6 +177,8 @@ risk_le <- forecast |>
   group_by(risk) |>
   mutate(probability = 1 - percent_rank(losses)) |>
   filter(losses > 0) |>
+  ungroup() |>
+  mutate(losses = currency(losses, digits = 0), probability = percent(probability)) |>
   ggplot(aes(losses, probability)) +
   facet_grid(vars(risk)) +
   geom_line() +
@@ -204,6 +206,8 @@ combined_le <- forecast |>
   summarize(total_losses = sum(losses)) |>
   mutate(probability = 1 - percent_rank(total_losses)) |>
   filter(total_losses > 0) |>
+  ungroup() |>
+  mutate(total_losses = currency(total_losses, digits = 0), probability = percent(probability)) |>
   ggplot(aes(total_losses, probability)) +
   geom_line() +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
