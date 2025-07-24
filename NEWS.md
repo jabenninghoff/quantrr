@@ -1,3 +1,7 @@
+# quantrr 1.1.6
+
+* Improved formatting of tooltips in interactive plots
+
 # quantrr 1.1.5
 
 * Removed dependency on Lato font family
