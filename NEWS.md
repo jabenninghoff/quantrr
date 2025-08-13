@@ -1,3 +1,7 @@
+# quantrr 1.1.7
+
+* Corrected GitHub language stats
+
 # quantrr 1.1.6
 
 * Improved formatting of tooltips in interactive plots
