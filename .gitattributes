@@ -1,0 +1,10 @@
+# rdev linguist overrides (https://github.com/github-linguist/linguist/blob/main/docs/overrides.md)
+.Rprofile linguist-vendored
+extra.css linguist-vendored
+renv/** linguist-vendored
+tests/testthat.R linguist-vendored
+tests/spelling.R linguist-vendored
+tests/testthat/test-spelling.R linguist-vendored
+_freeze/** linguist-generated
+
+# local overrides
