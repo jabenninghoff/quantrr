@@ -8,3 +8,4 @@ tests/testthat/test-spelling.R linguist-vendored
 _freeze/** linguist-generated
 
 # local overrides
+pkgdown/assets/sample/** linguist-generated
