@@ -1,5 +1,7 @@
 # quantrr 1.2.0
 
+* Added risk treatments to standalone site to demonstrate comparing risks using loss exceedance curves
+
 * Added treatment parameter to `calc_risk()`
 
 # quantrr 1.1.7

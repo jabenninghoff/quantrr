@@ -6,6 +6,6 @@
 - [x] Add detailed instructions for installation and use (standalone, RStudio)
 - [x] Add Quick Start Guide to README (standalone)
 - [x] Create logo using [stickers](https://github.com/jabenninghoff/stickers)
-- [ ] Add plots for risk treatments to allow estimation of return on investment (ROI)
+- [x] Add plots for risk treatments to allow estimation of return on investment (ROI)
 - [ ] Add "Risk Modeling with quantrr" vignette that shows function code, explains report
 - [ ] Update package [accessibility](https://pkgdown.r-lib.org/articles/accessibility.html)
