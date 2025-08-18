@@ -1,3 +1,7 @@
+# quantrr 1.2.1
+
+* Further reduce number of simulations in `calc_risk()` to resolve `code-link` issue after adding risk treatments
+
 # quantrr 1.2.0
 
 * Added risk treatments to standalone site to demonstrate comparing risks using loss exceedance curves
