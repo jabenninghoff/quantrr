@@ -11,7 +11,7 @@ sum(rlnorm(events, meanlog, sdlog))."><meta property="og:image" content="https:/
 
     <a class="navbar-brand me-2" href="../index.html">quantrr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@ calculated using <code>rpois(runs, lambda)</code> and total loss for each time p
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">calc_risk</span><span class="op">(</span><span class="va">risk</span>, <span class="va">lambda</span>, <span class="va">meanlog</span>, <span class="va">sdlog</span>, runs <span class="op">=</span> <span class="fl">50000</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">calc_risk</span><span class="op">(</span><span class="va">risk</span>, <span class="va">lambda</span>, <span class="va">meanlog</span>, <span class="va">sdlog</span>, treatment <span class="op">=</span> <span class="st">"none"</span>, runs <span class="op">=</span> <span class="fl">50000</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -72,6 +72,10 @@ calculated using <code>rpois(runs, lambda)</code> and total loss for each time p
 
 <dt id="arg-sdlog">sdlog<a class="anchor" aria-label="anchor" href="#arg-sdlog"></a></dt>
 <dd><p>Parameter passed to <code><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm()</a></code></p></dd>
+
+
+<dt id="arg-treatment">treatment<a class="anchor" aria-label="anchor" href="#arg-treatment"></a></dt>
+<dd><p>Risk treatment (a string)</p></dd>
 
 
 <dt id="arg-runs">runs<a class="anchor" aria-label="anchor" href="#arg-runs"></a></dt>
