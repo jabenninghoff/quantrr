@@ -4,7 +4,7 @@
 \alias{calc_risk}
 \title{Calculate Risk}
 \usage{
-calc_risk(risk, lambda, meanlog, sdlog, treatment = "none", runs = 50000)
+calc_risk(risk, lambda, meanlog, sdlog, treatment = "none", runs = 25000)
 }
 \arguments{
 \item{risk}{Risk name (a string)}
