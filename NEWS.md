@@ -1,3 +1,7 @@
+# quantrr 1.2.0
+
+* Added treatment parameter to `calc_risk()`
+
 # quantrr 1.1.7
 
 * Corrected GitHub language stats

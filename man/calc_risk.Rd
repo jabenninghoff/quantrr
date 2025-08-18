@@ -4,7 +4,7 @@
 \alias{calc_risk}
 \title{Calculate Risk}
 \usage{
-calc_risk(risk, lambda, meanlog, sdlog, runs = 50000)
+calc_risk(risk, lambda, meanlog, sdlog, treatment = "none", runs = 50000)
 }
 \arguments{
 \item{risk}{Risk name (a string)}
@@ -14,6 +14,8 @@ calc_risk(risk, lambda, meanlog, sdlog, runs = 50000)
 \item{meanlog}{Parameter passed to \code{rlnorm()}}
 
 \item{sdlog}{Parameter passed to \code{rlnorm()}}
+
+\item{treatment}{Risk treatment (a string)}
 
 \item{runs}{Number of simulations}
 }

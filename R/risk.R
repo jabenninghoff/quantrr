@@ -34,6 +34,7 @@ lnorm_param <- function(p05, p95, p50) {
 #' @param lambda Parameter passed to `rpois()`
 #' @param meanlog Parameter passed to `rlnorm()`
 #' @param sdlog Parameter passed to `rlnorm()`
+#' @param treatment Risk treatment (a string)
 #' @param runs Number of simulations
 #'
 #' @return A tibble of `runs` rows containing the number of events (`events`), and the total value
@@ -41,12 +42,12 @@ lnorm_param <- function(p05, p95, p50) {
 #'
 #' @export
 # default runs reduced from 1e5 to 50000 to fix code-link and improve performance
-calc_risk <- function(risk, lambda, meanlog, sdlog, runs = 50000) {
+calc_risk <- function(risk, lambda, meanlog, sdlog, treatment = "none", runs = 50000) {
   events <- stats::rpois(runs, lambda)
   losses <- purrr::map_dbl(events, \(n) sum(stats::rlnorm(n, meanlog, sdlog)))
 
   tibble::as_tibble(list(events = events, losses = losses)) |>
-    dplyr::mutate(year = dplyr::row_number(), risk = risk, .before = events)
+    dplyr::mutate(year = dplyr::row_number(), risk = risk, treatment = treatment, .before = events)
 }
 
 #' Geometric Mean
