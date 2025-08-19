@@ -1,3 +1,7 @@
+# quantrr 1.2.3
+
+* Updated risk histograms
+
 # quantrr 1.2.2
 
 * Add histograms comparing risk treatments
