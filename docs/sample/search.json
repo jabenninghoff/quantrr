@@ -78,7 +78,7 @@
     "href": "analysis/widgetsys.html#forecast-summary",
     "title": "Widget System Risk Analysis Report",
     "section": "Forecast Summary",
-    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year           risk            treatment             events      \n Min.   :    1   Length:150000      Length:150000      Min.   : 0.000  \n 1st Qu.: 6251   Class :character   Class :character   1st Qu.: 0.000  \n Median :12500   Mode  :character   Mode  :character   Median : 0.000  \n Mean   :12500                                         Mean   : 0.958  \n 3rd Qu.:18750                                         3rd Qu.: 2.000  \n Max.   :25000                                         Max.   :10.000  \n     losses         \n Min.   :0.000e+00  \n 1st Qu.:0.000e+00  \n Median :0.000e+00  \n Mean   :3.252e+06  \n 3rd Qu.:1.353e+05  \n Max.   :1.605e+10",
+    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year           risk            treatment             events      \n Min.   :    1   Length:150000      Length:150000      Min.   : 0.000  \n 1st Qu.: 6251   Class :character   Class :character   1st Qu.: 0.000  \n Median :12500   Mode  :character   Mode  :character   Median : 0.000  \n Mean   :12500                                         Mean   : 0.953  \n 3rd Qu.:18750                                         3rd Qu.: 2.000  \n Max.   :25000                                         Max.   :11.000  \n     losses         \n Min.   :0.000e+00  \n 1st Qu.:0.000e+00  \n Median :0.000e+00  \n Mean   :3.331e+06  \n 3rd Qu.:1.324e+05  \n Max.   :2.467e+10",
     "crumbs": [
       "Widget System Risk Analysis Report"
     ]
