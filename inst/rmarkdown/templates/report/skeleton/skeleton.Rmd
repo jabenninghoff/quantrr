@@ -164,7 +164,7 @@ forecast |>
 
 # Losses
 
-Baseline losses (with no risk treatment) by risk separately and in aggregate:
+Base losses (with no risk treatment) by risk:
 
 ```{r risk_hist}
 forecast |>
@@ -175,21 +175,11 @@ forecast |>
   facet_grid(vars(risk)) +
   geom_histogram(color = "black", fill = "white", bins = 100) +
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
-  labs(x = NULL, y = NULL, title = "Losses by Risk") +
-  theme_minimal()
-
-forecast |>
-  filter(tolower(treatment) == "none") |>
-  filter(losses > 0) |>
-  ggplot(aes(losses, fill = risk)) +
-  geom_histogram(bins = 100) +
-  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
-  labs(x = NULL, y = NULL, fill = "Risk", title = "Total Losses") +
-  scale_fill_viridis_d() +
+  labs(x = NULL, y = NULL, title = "Base Losses by Risk") +
   theme_minimal()
 ```
 
-Compare risk treatments:
+Combined losses by treatment:
 
 ```{r treatment_hist}
 forecast |>
@@ -201,7 +191,7 @@ forecast |>
   facet_grid(vars(treatment)) +
   geom_histogram(color = "black", fill = "white", bins = 100) +
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
-  labs(x = NULL, y = NULL, title = "Total Losses by Treatment") +
+  labs(x = NULL, y = NULL, title = "Combined Losses by Treatment") +
   theme_minimal()
 ```
 
