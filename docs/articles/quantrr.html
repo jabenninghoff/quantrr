@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">quantrr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -154,10 +154,10 @@ so.</p>
 <div class="section level3">
 <h3 id="standalone-preview">Standalone Preview<a class="anchor" aria-label="anchor" href="#standalone-preview"></a>
 </h3>
-<p>The standalone version contains an example analysis for the “Widget
-Management System”. If everything is correctly installed, running the
-following command in the R Console will generate and launch a website
-locally on your system:</p>
+<p>The <a href="../sample/">standalone version</a> contains an example
+analysis for the “Widget Management System”. If everything is correctly
+installed, running the following command in the R Console will generate
+and launch a website locally on your system:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"preview.R"</span><span class="op">)</span></span></code></pre></div>
 <p>Each time you launch R, you will need to set the working directory to
@@ -190,9 +190,18 @@ tab</li>
 </ol>
 <p>There is no set limit on the number of risks, but each must be unique
 and there must be at least one risk.</p>
-<p>The Estimates sheet is used for gathering estimates from Subject
-Matter Experts, and has 6 columns:</p>
+<p>The Treatments sheet is used for comparing investment (risk
+treatment) options, and has two columns:</p>
 <ol style="list-style-type: decimal">
+<li>“Treatment”, the short name of the risk treatment, also used in the
+Estimates tab</li>
+<li>“Description”, the long description of the risk treatment</li>
+</ol>
+<p>The Estimates sheet is used for gathering estimates from Subject
+Matter Experts, and has 7 columns:</p>
+<ol style="list-style-type: decimal">
+<li>“Treatment”, the short name of the risk treatment, which must match
+one of the treatments in the Treatment tab</li>
 <li>“Risk”, the short name of the risk, which must match one of the
 risks in the Risk tab</li>
 <li>“Expert”, the name or identifier of the SME providing the

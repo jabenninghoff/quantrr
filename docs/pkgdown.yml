@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   quantrr: quantrr.html
-last_built: 2025-08-18T22:33Z
+last_built: 2025-08-19T02:44Z
 urls:
   reference: https://jabenninghoff.github.io/quantrr/reference
   article: https://jabenninghoff.github.io/quantrr/articles
