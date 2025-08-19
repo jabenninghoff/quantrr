@@ -1,3 +1,7 @@
+# quantrr 1.2.2
+
+* Add histograms comparing risk treatments
+
 # quantrr 1.2.1
 
 * Further reduce number of simulations in `calc_risk()` to resolve `code-link` issue after adding risk treatments
