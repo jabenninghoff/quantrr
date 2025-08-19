@@ -28,8 +28,10 @@ knitr::opts_chunk$set(
 First presented as a [demo](https://jabenninghoff.github.io/security/analysis/rq-demo.html) in my
 2024 [SIRAcon](https://societyinforisk.org) talk, "[UnFAIR: Simplifying and Expanding Technology Risk Quantification](https://www.information-safety.org/2024/08/29/siracon-2024/)."
 
-A rendered version of the standalone sample report is available
-[here](https://jabenninghoff.github.io/quantrr/sample/).
+The package provides R [functions](https://jabenninghoff.github.io/quantrr/reference/) for risk
+modeling, a R Markdown template, and an easy to use standalone
+[sample report](https://jabenninghoff.github.io/quantrr/sample/) that can be copied or modified for
+risk quantification analysis and communication.
 
 ## Quick Start
 
