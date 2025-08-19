@@ -169,7 +169,7 @@ forecast |>
 
 # Losses
 
-Baseline losses (with no risk treatment) by risk separately and in aggregate:
+Baseline losses (with no risk treatment) by risk:
 
 ```{r risk_hist}
 forecast |>
@@ -181,16 +181,6 @@ forecast |>
   geom_histogram(color = "black", fill = "white", bins = 100) +
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
   labs(x = NULL, y = NULL, title = "Losses by Risk") +
-  theme_minimal()
-
-forecast |>
-  filter(tolower(treatment) == "none") |>
-  filter(losses > 0) |>
-  ggplot(aes(losses, fill = risk)) +
-  geom_histogram(bins = 100) +
-  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
-  labs(x = NULL, y = NULL, fill = "Risk", title = "Total Losses") +
-  scale_fill_viridis_d() +
   theme_minimal()
 ```
 
