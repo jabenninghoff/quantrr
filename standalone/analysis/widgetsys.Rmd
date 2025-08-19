@@ -169,7 +169,7 @@ forecast |>
 
 # Losses
 
-Baseline losses (with no risk treatment) by risk:
+Base losses (with no risk treatment) by risk:
 
 ```{r risk_hist}
 forecast |>
@@ -180,11 +180,11 @@ forecast |>
   facet_grid(vars(risk)) +
   geom_histogram(color = "black", fill = "white", bins = 100) +
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
-  labs(x = NULL, y = NULL, title = "Losses by Risk") +
+  labs(x = NULL, y = NULL, title = "Base Losses by Risk") +
   theme_minimal()
 ```
 
-Compare risk treatments:
+Combined losses by treatment:
 
 ```{r treatment_hist}
 forecast |>
@@ -196,7 +196,7 @@ forecast |>
   facet_grid(vars(treatment)) +
   geom_histogram(color = "black", fill = "white", bins = 100) +
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
-  labs(x = NULL, y = NULL, title = "Total Losses by Treatment") +
+  labs(x = NULL, y = NULL, title = "Combined Losses by Treatment") +
   theme_minimal()
 ```
 
