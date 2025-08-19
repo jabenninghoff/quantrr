@@ -87,9 +87,9 @@ command line developer tools, please do so.
 
 ### Standalone Preview
 
-The standalone version contains an example analysis for the "Widget Management System". If
-everything is correctly installed, running the following command in the R Console will generate and
-launch a website locally on your system:
+The [standalone version](../sample/) contains an example analysis for the "Widget Management
+System". If everything is correctly installed, running the following command in the R Console will
+generate and launch a website locally on your system:
 
 ``` r
 source("preview.R")
@@ -110,21 +110,28 @@ tabs, "Risks" and "Estimates", all other tabs are ignored.
 The Risks sheet is used for scoping the assessment, and has two columns:
 
 1. "Risk", the short name of the risk, also used in the Estimates tab
-2. "Description", the long description of the risk
+1. "Description", the long description of the risk
 
 There is no set limit on the number of risks, but each must be unique and there must be at least one
 risk.
 
-The Estimates sheet is used for gathering estimates from Subject Matter Experts, and has 6 columns:
+The Treatments sheet is used for comparing investment (risk treatment) options, and has two columns:
 
+1. "Treatment", the short name of the risk treatment, also used in the Estimates tab
+1. "Description", the long description of the risk treatment
+
+The Estimates sheet is used for gathering estimates from Subject Matter Experts, and has 7 columns:
+
+1. "Treatment", the short name of the risk treatment, which must match one of the treatments in the
+    Treatment tab
 1. "Risk", the short name of the risk, which must match one of the risks in the Risk tab
-2. "Expert", the name or identifier of the SME providing the estimate
-3. "Frequency (per year)", the average number of times an event is expected to occur per year, used
+1. "Expert", the name or identifier of the SME providing the estimate
+1. "Frequency (per year)", the average number of times an event is expected to occur per year, used
    as the value of $\lambda$ for the Poisson loss frequency distribution. Fractional values
    represent once every $\frac{1}{x}$ years; once every 4 years is 0.25.
-4. "Low (5%)", the estimate of the low (5th percentile) value for a single loss event.
-5. "High (95%)", the estimate of the high (95th percentile) value for a single loss event.
-6. "Most Likely", the estimate of the median (50th percentile) value for a single loss event.
+1. "Low (5%)", the estimate of the low (5th percentile) value for a single loss event.
+1. "High (95%)", the estimate of the high (95th percentile) value for a single loss event.
+1. "Most Likely", the estimate of the median (50th percentile) value for a single loss event.
 
 The Low and High values are used to calculate the parameters for the log-normal loss magnitude
 distribution, and the Most Likely is used as a check to see how close the estimates fit log-normal.

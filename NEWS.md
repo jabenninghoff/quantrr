@@ -4,6 +4,8 @@
 
 * Update R Markdown template to match sample report
 
+* Updated documentation
+
 # quantrr 1.2.1
 
 * Further reduce number of simulations in `calc_risk()` to resolve `code-link` issue after adding risk treatments
