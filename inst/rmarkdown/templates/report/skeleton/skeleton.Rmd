@@ -71,6 +71,23 @@ validate_risks <- local({
 
 check_validation(validate_risks, sheet = "Risks")
 
+treatments <- read_xlsx(report_file, sheet = "Treatments") |>
+  clean_names()
+
+validate_treatments <- local({
+  validate_rules <- validator(
+    treatment_char = is.character(treatment),
+    treatment_not_na = !is.na(treatment),
+    treatment_not_blank = is.nzchar(treatment, keep_na = TRUE),
+    desc_char = is.character(description),
+    desc_not_na = !is.na(description),
+    desc_not_blank = is.nzchar(treatment, keep_na = TRUE)
+  )
+  confront(treatments, validate_rules)
+})
+
+check_validation(validate_treatments, sheet = "Treatments")
+
 estimates <- read_xlsx(report_file, sheet = "Estimates") |>
   clean_names() |>
   rename(
@@ -107,30 +124,36 @@ Risk descriptions:
 formattable(risks, align = "l")
 ```
 
+Treatment descriptions:
+
+```{r treatments}
+formattable(treatments, align = "l")
+```
+
 # Forecast
 
 Forecast risk using Monte Carlo simulation. The average events, losses, 'typical' losses (geometric
-mean), and percentage of years with no losses for each risk are summarized below:
+mean), and percentage of years with no losses for each risk and treatment are summarized below:
 
 ```{r forecast}
 consensus <- estimates |>
-  group_by(risk) |>
-  summarize(across(lambda:p50, ~ mean(.x, na.rm = TRUE)))
+  group_by(treatment, risk) |>
+  summarize(across(lambda:p50, ~ mean(.x, na.rm = TRUE)), .groups = "drop")
 
 consensus_params <- consensus |>
   mutate(as_tibble(lnorm_param(.data$p05, .data$p95, .data$p50)))
 
 forecast <- consensus_params |>
-  select(c("risk", "lambda", "meanlog", "sdlog")) |>
+  select(c("risk", "lambda", "meanlog", "sdlog", "treatment")) |>
   pmap(calc_risk) |>
   list_rbind()
 
 forecast |>
-  group_by(risk) |>
+  group_by(treatment, risk) |>
   mutate(no_losses = events == 0) |>
   summarize(
     avg_events = mean(events), avg_losses = mean(losses), typ_losses = gmean(losses),
-    no_losses = mean(no_losses)
+    no_losses = mean(no_losses), .groups = "drop"
   ) |>
   mutate(
     across(avg_losses:typ_losses, ~ currency(.x, digits = 0L)),
@@ -141,10 +164,11 @@ forecast |>
 
 # Losses
 
-Losses by risk separately and in aggregate:
+Baseline losses (with no risk treatment) by risk separately and in aggregate:
 
 ```{r risk_hist}
 forecast |>
+  filter(tolower(treatment) == "none") |>
   # remove zero losses to plot using log10 scale
   filter(losses > 0) |>
   ggplot(aes(losses)) +
@@ -155,6 +179,7 @@ forecast |>
   theme_minimal()
 
 forecast |>
+  filter(tolower(treatment) == "none") |>
   filter(losses > 0) |>
   ggplot(aes(losses, fill = risk)) +
   geom_histogram(bins = 100) +
@@ -164,9 +189,25 @@ forecast |>
   theme_minimal()
 ```
 
+Compare risk treatments:
+
+```{r treatment_hist}
+forecast |>
+  group_by(treatment, year) |>
+  summarize(total_losses = sum(losses), .groups = "drop_last") |>
+  # remove zero losses to plot using log10 scale
+  filter(total_losses > 0) |>
+  ggplot(aes(total_losses)) +
+  facet_grid(vars(treatment)) +
+  geom_histogram(color = "black", fill = "white", bins = 100) +
+  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
+  labs(x = NULL, y = NULL, title = "Total Losses by Treatment") +
+  theme_minimal()
+```
+
 # Loss Exceedance Curves
 
-Plot loss exceedance curves for all risks and combined risk.
+Plot loss exceedance curves for all risks and combined risk, with risk treatments.
 
 ## By Risk
 
@@ -174,17 +215,18 @@ Plot loss exceedance curves for each risk:
 
 ```{r risk_le}
 risk_le <- forecast |>
-  group_by(risk) |>
+  group_by(risk, treatment) |>
   mutate(probability = 1 - percent_rank(losses)) |>
   filter(losses > 0) |>
   ungroup() |>
   mutate(losses = currency(losses, digits = 0), probability = percent(probability)) |>
-  ggplot(aes(losses, probability)) +
+  ggplot(aes(losses, probability, color = treatment)) +
   facet_grid(vars(risk)) +
   geom_line() +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
-  labs(x = NULL, y = NULL, title = "Loss Exceedance by Risk") +
+  labs(x = NULL, y = NULL, color = "Treatment", title = "Loss Exceedance by Risk") +
+  scale_color_viridis_d() +
   theme_minimal()
 
 risk_le
@@ -193,7 +235,7 @@ risk_le
 Interactive plot:
 
 ```{r risk_le_plotly}
-ggplotly(risk_le)
+ggplotly(risk_le + guides(color = "none"))
 ```
 
 ## Combined Risk
@@ -202,17 +244,18 @@ Plot loss exceedance curve for combined risk:
 
 ```{r combined_le}
 combined_le <- forecast |>
-  group_by(year) |>
-  summarize(total_losses = sum(losses)) |>
+  group_by(treatment, year) |>
+  summarize(total_losses = sum(losses), .groups = "drop_last") |>
   mutate(probability = 1 - percent_rank(total_losses)) |>
   filter(total_losses > 0) |>
   ungroup() |>
   mutate(total_losses = currency(total_losses, digits = 0), probability = percent(probability)) |>
-  ggplot(aes(total_losses, probability)) +
+  ggplot(aes(total_losses, probability, color = treatment)) +
   geom_line() +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
   scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
-  labs(x = NULL, y = NULL, title = "Combined Loss Exceedance") +
+  labs(x = NULL, y = NULL, color = "Treatment", title = "Combined Loss Exceedance") +
+  scale_color_viridis_d() +
   theme_minimal()
 
 combined_le
@@ -221,7 +264,7 @@ combined_le
 Interactive plot:
 
 ```{r combined_le_plotly}
-ggplotly(combined_le)
+ggplotly(combined_le + guides(color = "none"))
 ```
 
 # Appendix
@@ -234,6 +277,12 @@ Data validation results for Risks tab:
 
 ```{r validate_risks}
 plot(validate_risks)
+```
+
+Data validation results for Treatments tab:
+
+```{r validate_treatments}
+plot(validate_treatments)
 ```
 
 Data validation results for Estimates tab:
