@@ -194,6 +194,22 @@ forecast |>
   theme_minimal()
 ```
 
+Compare risk treatments:
+
+```{r treatment_hist}
+forecast |>
+  group_by(treatment, year) |>
+  summarize(total_losses = sum(losses), .groups = "drop_last") |>
+  # remove zero losses to plot using log10 scale
+  filter(total_losses > 0) |>
+  ggplot(aes(total_losses)) +
+  facet_grid(vars(treatment)) +
+  geom_histogram(color = "black", fill = "white", bins = 100) +
+  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +
+  labs(x = NULL, y = NULL, title = "Total Losses by Treatment") +
+  theme_minimal()
+```
+
 # Loss Exceedance Curves
 
 Plot loss exceedance curves for all risks and combined risk, with risk treatments.
