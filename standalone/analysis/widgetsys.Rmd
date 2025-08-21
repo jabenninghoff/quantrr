@@ -22,7 +22,7 @@ output:
       smooth_scroll: no
 ---
 
-Example quantrr risk analysis of the "Widget Management System" (WMS).
+Example [quantrr](https://jabenninghoff.github.io/quantrr/) risk analysis of the "Widget Management System" (WMS).
 
 ```{r setup, message = FALSE, warning = FALSE}
 library(quantrr)
