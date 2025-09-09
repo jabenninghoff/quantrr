@@ -7,5 +7,5 @@
 - [x] Add Quick Start Guide to README (standalone)
 - [x] Create logo using [stickers](https://github.com/jabenninghoff/stickers)
 - [x] Add plots for risk treatments to allow estimation of return on investment (ROI)
-- [ ] Add "Risk Modeling with quantrr" vignette that shows function code, explains report
+- [ ] Add "Risk Modeling with quantrr" vignette that shows function code, explains report, possibly a "How To" article like [this substack post](https://diffuser.substack.com/p/how-to-build-a-loss-exceedance-curve)
 - [ ] Update package [accessibility](https://pkgdown.r-lib.org/articles/accessibility.html)
