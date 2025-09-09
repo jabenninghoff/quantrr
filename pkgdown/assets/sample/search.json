@@ -14,6 +14,76 @@
     "text": "Reports\nRisk analysis Reports:"
   },
   {
+    "objectID": "analysis/mfa.html",
+    "href": "analysis/mfa.html",
+    "title": "MFA Risk Analysis Report",
+    "section": "",
+    "text": "Example quantrr risk analysis of multi-factor authentication (MFA) using real data! Originally used for the plot in my Aug 28 LinkedIn Post.\nCodelibrary(quantrr)\nlibrary(readxl)\nlibrary(janitor)\nlibrary(validate)\nlibrary(dplyr)\nlibrary(formattable)\nlibrary(purrr)\nlibrary(ggplot2)\nlibrary(plotly)\n\n# TODO: workaround for https://github.com/r-lib/lintr/issues/2790, update when\n#   https://github.com/data-cleaning/validate/pull/197 is released (1.1.6+)\nis.nzchar &lt;- nzchar # nolint: object_name_linter.\n\n# set the relative file path and name to import\nreport_file &lt;- \"data/mfa.xlsx\"",
+    "crumbs": [
+      "MFA Risk Analysis Report"
+    ]
+  },
+  {
+    "objectID": "analysis/mfa.html#by-risk",
+    "href": "analysis/mfa.html#by-risk",
+    "title": "MFA Risk Analysis Report",
+    "section": "By Risk",
+    "text": "By Risk\nPlot loss exceedance curves for each risk:\n\nCoderisk_le &lt;- forecast |&gt;\n  group_by(risk, treatment) |&gt;\n  mutate(probability = 1 - percent_rank(losses)) |&gt;\n  filter(losses &gt; 0) |&gt;\n  ungroup() |&gt;\n  mutate(losses = currency(losses, digits = 0), probability = percent(probability)) |&gt;\n  ggplot(aes(losses, probability, color = treatment)) +\n  facet_grid(vars(risk)) +\n  geom_line() +\n  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 0.1)) +\n  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +\n  labs(x = NULL, y = NULL, color = \"Treatment\", title = \"Loss Exceedance by Risk\") +\n  scale_color_viridis_d() +\n  theme_minimal()\n\nrisk_le\n\n\n\n\n\n\n\nInteractive plot:\n\nCodeggplotly(risk_le + guides(color = \"none\"))",
+    "crumbs": [
+      "MFA Risk Analysis Report"
+    ]
+  },
+  {
+    "objectID": "analysis/mfa.html#combined-risk",
+    "href": "analysis/mfa.html#combined-risk",
+    "title": "MFA Risk Analysis Report",
+    "section": "Combined Risk",
+    "text": "Combined Risk\nPlot loss exceedance curve for combined risk:\n\nCodecombined_le &lt;- forecast |&gt;\n  group_by(treatment, year) |&gt;\n  summarize(total_losses = sum(losses), .groups = \"drop_last\") |&gt;\n  mutate(probability = 1 - percent_rank(total_losses)) |&gt;\n  filter(total_losses &gt; 0) |&gt;\n  ungroup() |&gt;\n  mutate(total_losses = currency(total_losses, digits = 0), probability = percent(probability)) |&gt;\n  ggplot(aes(total_losses, probability, color = treatment)) +\n  geom_line() +\n  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 0.1)) +\n  scale_x_log10(labels = scales::label_currency(scale_cut = scales::cut_short_scale())) +\n  labs(x = NULL, y = NULL, color = \"Treatment\", title = \"Combined Loss Exceedance\") +\n  scale_color_viridis_d() +\n  theme_minimal()\n\ncombined_le\n\n\n\n\n\n\n\nInteractive plot:\n\nCodeggplotly(combined_le + guides(color = \"none\"))",
+    "crumbs": [
+      "MFA Risk Analysis Report"
+    ]
+  },
+  {
+    "objectID": "analysis/mfa.html#validation",
+    "href": "analysis/mfa.html#validation",
+    "title": "MFA Risk Analysis Report",
+    "section": "Validation",
+    "text": "Validation\nData validation results for Risks tab:\n\nCodeplot(validate_risks)\n\n\n\n\n\n\n\nData validation results for Treatments tab:\n\nCodeplot(validate_treatments)\n\n\n\n\n\n\n\nData validation results for Estimates tab:\n\nCodeplot(validate_estimates)",
+    "crumbs": [
+      "MFA Risk Analysis Report"
+    ]
+  },
+  {
+    "objectID": "analysis/mfa.html#estimates",
+    "href": "analysis/mfa.html#estimates",
+    "title": "MFA Risk Analysis Report",
+    "section": "Estimates",
+    "text": "Estimates\nAll risk estimates:\n\nCodeestimates |&gt;\n  mutate(across(p05:p50, ~ currency(.x, digits = 0L))) |&gt;\n  formattable(align = \"l\")\n\n\n\n\ntreatment\n\n\nrisk\n\n\nexpert\n\n\nlambda\n\n\np05\n\n\np95\n\n\np50\n\n\n\n\n\nNone\n\n\nCybersecurity Breach\n\n\nIRIS\n\n\n0.074800\n\n\n$31,900\n\n\n$17,000,000\n\n\n$736,000\n\n\n\n\nUse MFA (optomistic)\n\n\nCybersecurity Breach\n\n\nPaper\n\n\n0.000748\n\n\n$31,900\n\n\n$17,000,000\n\n\n$736,000\n\n\n\n\nUse MFA (pessimistic)\n\n\nCybersecurity Breach\n\n\nPaper\n\n\n0.017952\n\n\n$31,900\n\n\n$17,000,000\n\n\n$736,000",
+    "crumbs": [
+      "MFA Risk Analysis Report"
+    ]
+  },
+  {
+    "objectID": "analysis/mfa.html#consensus-estimate",
+    "href": "analysis/mfa.html#consensus-estimate",
+    "title": "MFA Risk Analysis Report",
+    "section": "Consensus Estimate",
+    "text": "Consensus Estimate\nUsing a simple average of all experts that provided an estimate (not blank/NA), this gives us a consensus estimate for the three risks of:\n\nCodeconsensus |&gt;\n  mutate(across(p05:p50, ~ currency(.x, digits = 0L))) |&gt;\n  formattable(align = \"l\")\n\n\n\n\ntreatment\n\n\nrisk\n\n\nlambda\n\n\np05\n\n\np95\n\n\np50\n\n\n\n\n\nNone\n\n\nCybersecurity Breach\n\n\n0.074800\n\n\n$31,900\n\n\n$17,000,000\n\n\n$736,000\n\n\n\n\nUse MFA (optomistic)\n\n\nCybersecurity Breach\n\n\n0.000748\n\n\n$31,900\n\n\n$17,000,000\n\n\n$736,000\n\n\n\n\nUse MFA (pessimistic)\n\n\nCybersecurity Breach\n\n\n0.017952\n\n\n$31,900\n\n\n$17,000,000\n\n\n$736,000\n\n\n\n\n\n\nThe consensus estimates for p05 and p95 result in the following parameters for log-normal loss magnitude. The p50 estimate is used to calculate the percentage difference from the actual median (mdiff), a measure of estimate accuracy:\n\nCodeconsensus_params |&gt;\n  mutate(across(p05:p50, ~ currency(.x, digits = 0L)), mdiff = percent(mdiff)) |&gt;\n  formattable(align = \"l\")\n\n\n\n\ntreatment\n\n\nrisk\n\n\nlambda\n\n\np05\n\n\np95\n\n\np50\n\n\nmeanlog\n\n\nsdlog\n\n\nmdiff\n\n\n\n\n\nNone\n\n\nCybersecurity Breach\n\n\n0.074800\n\n\n$31,900\n\n\n$17,000,000\n\n\n$736,000\n\n\n13.50954\n\n\n1.908487\n\n\n-0.06%\n\n\n\n\nUse MFA (optomistic)\n\n\nCybersecurity Breach\n\n\n0.000748\n\n\n$31,900\n\n\n$17,000,000\n\n\n$736,000\n\n\n13.50954\n\n\n1.908487\n\n\n-0.06%\n\n\n\n\nUse MFA (pessimistic)\n\n\nCybersecurity Breach\n\n\n0.017952\n\n\n$31,900\n\n\n$17,000,000\n\n\n$736,000\n\n\n13.50954\n\n\n1.908487\n\n\n-0.06%",
+    "crumbs": [
+      "MFA Risk Analysis Report"
+    ]
+  },
+  {
+    "objectID": "analysis/mfa.html#forecast-summary",
+    "href": "analysis/mfa.html#forecast-summary",
+    "title": "MFA Risk Analysis Report",
+    "section": "Forecast Summary",
+    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year           risk            treatment             events       \n Min.   :    1   Length:75000       Length:75000       Min.   :0.00000  \n 1st Qu.: 6251   Class :character   Class :character   1st Qu.:0.00000  \n Median :12500   Mode  :character   Mode  :character   Median :0.00000  \n Mean   :12500                                         Mean   :0.03125  \n 3rd Qu.:18750                                         3rd Qu.:0.00000  \n Max.   :25000                                         Max.   :2.00000  \n     losses         \n Min.   :        0  \n 1st Qu.:        0  \n Median :        0  \n Mean   :   137076  \n 3rd Qu.:        0  \n Max.   :650067646",
+    "crumbs": [
+      "MFA Risk Analysis Report"
+    ]
+  },
+  {
     "objectID": "analysis/widgetsys.html",
     "href": "analysis/widgetsys.html",
     "title": "Widget System Risk Analysis Report",
@@ -78,7 +148,7 @@
     "href": "analysis/widgetsys.html#forecast-summary",
     "title": "Widget System Risk Analysis Report",
     "section": "Forecast Summary",
-    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year           risk            treatment             events       \n Min.   :    1   Length:150000      Length:150000      Min.   : 0.0000  \n 1st Qu.: 6251   Class :character   Class :character   1st Qu.: 0.0000  \n Median :12500   Mode  :character   Mode  :character   Median : 0.0000  \n Mean   :12500                                         Mean   : 0.9545  \n 3rd Qu.:18750                                         3rd Qu.: 2.0000  \n Max.   :25000                                         Max.   :10.0000  \n     losses         \n Min.   :0.000e+00  \n 1st Qu.:0.000e+00  \n Median :0.000e+00  \n Mean   :3.847e+06  \n 3rd Qu.:1.347e+05  \n Max.   :2.321e+10",
+    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year           risk            treatment             events       \n Min.   :    1   Length:150000      Length:150000      Min.   : 0.0000  \n 1st Qu.: 6251   Class :character   Class :character   1st Qu.: 0.0000  \n Median :12500   Mode  :character   Mode  :character   Median : 0.0000  \n Mean   :12500                                         Mean   : 0.9581  \n 3rd Qu.:18750                                         3rd Qu.: 2.0000  \n Max.   :25000                                         Max.   :10.0000  \n     losses         \n Min.   :0.000e+00  \n 1st Qu.:0.000e+00  \n Median :0.000e+00  \n Mean   :2.958e+06  \n 3rd Qu.:1.364e+05  \n Max.   :1.056e+10",
     "crumbs": [
       "Widget System Risk Analysis Report"
     ]
