@@ -1,9 +1,9 @@
-#' Build quantrr sample report
+#' Build quantrr sample reports
 #'
-#' Clean and build quantrr sample report. By default, it will:
+#' Clean and build quantrr sample reports. By default, it will:
 #' 1. Delete quarto `_freeze` directory from `input`
 #' 1. Delete destination (output) directory
-#' 1. Build the sample report using [quarto::quarto_render()]
+#' 1. Build the sample reports using [quarto::quarto_render()]
 #' 1. Copy rendered site to destination (output) directory
 #'
 #' `build_sample()` will fail if quantrr hasn't been installed locally using RStudio > Build >

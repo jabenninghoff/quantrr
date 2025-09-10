@@ -26,8 +26,8 @@ Quantification](https://www.information-safety.org/2024/08/29/siracon-2024/).”
 
 The package provides R
 [functions](https://jabenninghoff.github.io/quantrr/reference/) for risk
-modeling, a R Markdown template, and an easy to use standalone [sample
-report](https://jabenninghoff.github.io/quantrr/sample/) that can be
+modeling, a R Markdown template, and easy to use standalone [sample
+reports](https://jabenninghoff.github.io/quantrr/sample/) that can be
 copied or modified for risk quantification analysis and communication.
 
 ## Quick Start
@@ -45,7 +45,8 @@ vignette.
 4.  Launch R and set the working directory to the “standalone”
     directory.
 5.  Run `source("setup.R")` to install the required R packages.
-6.  Run `source("preview.R")` to build and display the example analysis.
+6.  Run `source("preview.R")` to build and display the sample analysis
+    reports.
 
 ## Installation
 
