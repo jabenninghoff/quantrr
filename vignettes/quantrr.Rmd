@@ -19,7 +19,7 @@ quantrr is a streamlined, opinionated, "risk quant on rails" tool designed to ma
 I originally wanted to name it "qrisk", but that's already [trademarked](https://qrisk.org).
 
 quantrr can be installed as a standalone application (for novice users) or integrated into your R
-development workflow (for advanced users). A rendered version of the standalone sample report is
+development workflow (for advanced users). Rendered versions of the standalone sample reports are
 available [here](../sample/).
 
 ## Standalone

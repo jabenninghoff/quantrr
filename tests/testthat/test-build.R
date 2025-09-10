@@ -1,6 +1,6 @@
 # build_sample
 
-test_that("sample report is expected size", {
+test_that("WMS sample report is expected size", {
   skip_on_ci()
   skip_on_cran()
   skip_on_covr()
@@ -16,7 +16,7 @@ test_that("sample report is expected size", {
   expect_gte(sample_lines, expected_lines * 0.9)
 })
 
-test_that("R Markdown template and sample report length match", {
+test_that("R Markdown template and WMS sample report length match", {
   skip_on_ci()
   skip_on_cran()
   skip_on_covr()

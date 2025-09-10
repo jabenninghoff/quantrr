@@ -1,3 +1,7 @@
+# quantrr 1.2.6
+
+* Minor updates
+
 # quantrr 1.2.5
 
 * New example: analysis of multi-factor authentication (MFA) using real data
