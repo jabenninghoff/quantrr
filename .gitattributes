@@ -9,4 +9,4 @@ _freeze/** linguist-generated
 
 # local overrides
 inst/rmarkdown/templates/report/skeleton/skeleton.Rmd linguist-detectable
-pkgdown/assets/sample/** linguist-generated
+pkgdown/assets/example/** linguist-generated

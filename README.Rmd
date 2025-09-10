@@ -30,7 +30,7 @@ First presented as a [demo](https://jabenninghoff.github.io/security/analysis/rq
 
 The package provides R [functions](https://jabenninghoff.github.io/quantrr/reference/) for risk
 modeling, a R Markdown template, and easy to use standalone
-[sample reports](https://jabenninghoff.github.io/quantrr/sample/) that can be copied or modified for
+[example reports](https://jabenninghoff.github.io/quantrr/example/) that can be copied or modified for
 risk quantification analysis and communication.
 
 ## Quick Start
@@ -43,7 +43,7 @@ Detailed instructions are available in the
 1. Download and extract the "standalone" directory from this repository.
 1. Launch R and set the working directory to the "standalone" directory.
 1. Run `source("setup.R")` to install the required R packages.
-1. Run `source("preview.R")` to build and display the sample analysis reports.
+1. Run `source("preview.R")` to build and display the example analysis reports.
 
 ## Installation
 
