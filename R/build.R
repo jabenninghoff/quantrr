@@ -1,12 +1,12 @@
-#' Build quantrr sample reports
+#' Build quantrr example reports
 #'
-#' Clean and build quantrr sample reports. By default, it will:
+#' Clean and build quantrr example reports. By default, it will:
 #' 1. Delete quarto `_freeze` directory from `input`
 #' 1. Delete destination (output) directory
-#' 1. Build the sample reports using [quarto::quarto_render()]
+#' 1. Build the example reports using [quarto::quarto_render()]
 #' 1. Copy rendered site to destination (output) directory
 #'
-#' `build_sample()` will fail if quantrr hasn't been installed locally using RStudio > Build >
+#' `build_example()` will fail if quantrr hasn't been installed locally using RStudio > Build >
 #'   Install
 #'
 #' @param input The input file or directory to be rendered using [quarto::quarto_render()].
@@ -17,10 +17,10 @@
 #' @keywords internal
 #' @noRd
 # nocov start: utility function that is not exported as part of the quantrr package
-build_sample <- function(input = "standalone",
-                         output = "pkgdown/assets/sample",
-                         as_job = FALSE,
-                         clean = TRUE) {
+build_example <- function(input = "standalone",
+                          output = "pkgdown/assets/example",
+                          as_job = FALSE,
+                          clean = TRUE) {
   freeze <- fs::path_join(c(input, "_freeze"))
   rendered <- fs::path_join(c(input, "html"))
 

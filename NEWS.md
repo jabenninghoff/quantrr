@@ -1,6 +1,6 @@
 # quantrr 1.2.6
 
-* Minor updates
+* Use consistent language about example reports
 
 # quantrr 1.2.5
 
@@ -18,7 +18,7 @@
 
 * Add histograms comparing risk treatments
 
-* Update R Markdown template to match sample report
+* Update R Markdown template to match example report
 
 * Updated documentation
 
@@ -94,7 +94,7 @@ Other updates:
 
 * Updated Template to match Standalone site example
 
-* Add rendered standalone report sample to online documentation
+* Add rendered standalone report example to online documentation
 
 # quantrr 1.0.1
 
