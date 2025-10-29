@@ -8,12 +8,13 @@ on:
 
 name: missing-deps
 
+permissions: read-all
+
 jobs:
   missing-deps:
     runs-on: macos-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - uses: actions/checkout@v4
 
