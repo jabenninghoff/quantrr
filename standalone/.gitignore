@@ -1,3 +1,4 @@
+**/*.quarto_ipynb
 /_freeze/
 /.quarto/
 /analysis/*.html
