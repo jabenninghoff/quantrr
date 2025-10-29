@@ -1,3 +1,7 @@
+# quantrr 1.2.7
+
+* First upkeep using `rdev::use_upkeep_issue()`
+
 # quantrr 1.2.6
 
 * Use consistent language about example reports
