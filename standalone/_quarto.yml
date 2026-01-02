@@ -12,7 +12,7 @@ website:
     search: true
   page-footer:
     left: "Report generated with [quantrr](https://jabenninghoff.github.io/quantrr/)"
-    center: "Copyright 2025"
+    center: "Copyright 2026"
     right: "Rendered with Quarto {{< version >}}"
 
 execute:

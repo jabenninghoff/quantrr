@@ -2,3 +2,4 @@ url: https://jabenninghoff.github.io/quantrr/
 template:
   bootstrap: 5
   light-switch: true
+llm-docs: false
