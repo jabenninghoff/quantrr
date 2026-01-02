@@ -1,8 +1,28 @@
 # lnorm_param
 
+test_that("lnorm_param validates parameters", {
+  expect_no_error(lnorm_param(p50 = 1425000, p95 = 20000000, p05 = 100000))
+  expect_no_error(lnorm_param(p50 = 1425000, p95 = 20000000, p05 = NA))
+  expect_error(lnorm_param(p50 = NA_real_, p95 = 20000000, p05 = 100000), "'p50'")
+  expect_error(lnorm_param(p50 = 1425000, p95 = NA_real_, p05 = 100000), "'p95'")
+  expect_error(lnorm_param(p50 = -1, p95 = 20000000, p05 = 100000), "'p50'")
+  expect_error(lnorm_param(p50 = 1425000, p95 = -1, p05 = 100000), "'p95'")
+  expect_error(lnorm_param(p50 = 1425000, p95 = 20000000, p05 = -1), "'p05'")
+})
+
 test_that("lnorm_param returns correct values", {
   expect_equal(
-    lnorm_param(100000, 20000000, 1425000),
+    lnorm_param(p50 = 1425000, p95 = 20000000),
+    list(meanlog = 14.1696823716849, sdlog = 1.6059547284637, mdiff = NA),
+    tolerance = testthat_tolerance()
+  )
+  expect_equal(
+    lnorm_param(p50 = 1425000, p95 = 20000000, p05 = 100000),
+    list(meanlog = 14.1620841482442, sdlog = 1.61057412031483, mdiff = 0.00762716319082979),
+    tolerance = testthat_tolerance()
+  )
+  expect_equal(
+    lnorm_param(1425000, 20000000, 100000),
     list(meanlog = 14.1620841482442, sdlog = 1.61057412031483, mdiff = 0.00762716319082979),
     tolerance = testthat_tolerance()
   )

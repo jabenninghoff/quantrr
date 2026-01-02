@@ -148,7 +148,7 @@ consensus <- estimates |>
   summarize(across(lambda:p50, ~ mean(.x, na.rm = TRUE)), .groups = "drop")
 
 consensus_params <- consensus |>
-  mutate(as_tibble(lnorm_param(.data$p05, .data$p95, .data$p50)))
+  mutate(as_tibble(lnorm_param(p50 = .data$p50, p95 = .data$p95, p05 = .data$p05)))
 
 forecast <- consensus_params |>
   select(c("risk", "lambda", "meanlog", "sdlog", "treatment")) |>

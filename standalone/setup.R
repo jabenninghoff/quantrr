@@ -3,8 +3,8 @@
 writeLines("Installing required R packages from CRAN...\n")
 install.packages(
   c(
-    "downlit", "dplyr", "formattable", "ggplot2", "janitor", "plotly",
-    "purrr", "quarto", "readxl", "tibble", "validate", "xml2"
+    "checkmate", "downlit", "dplyr", "formattable", "ggplot2", "janitor",
+    "plotly", "purrr", "quarto", "readxl", "tibble", "validate", "xml2"
   )
 )
 

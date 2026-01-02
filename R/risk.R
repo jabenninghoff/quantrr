@@ -1,25 +1,41 @@
 #' Calculate Log Normal Parameters
 #'
-#' Calculate the parameters of a log normal distribution from estimated 0.05 and 0.95 quantile. Also
+#' Calculate the parameters of a log normal distribution from quantile estimates.
+#'
+#' If `p05` is not provided (the default), use `p50` (median) and `p95` to calculate `meanlog` and
+#'   `sdlog`. If `p05` is provided, use `p05` and `p95` to calculate the parameters, and also
 #'   calculate the fractional difference between the estimated median value (0.5 quantile) and the
 #'   median value calculated from the 0.05 and 0.95 values.
 #'
-#' @param p05 the "low" value, the 0.05 quantile.
-#' @param p95 the "high" value, the 0.95 quantile.
+#' `mdiff` is set to `NA` if `p05` is not provided.
+#'
 #' @param p50 the most likely value, the 0.5 quantile.
+#' @param p95 the "high" value, the 0.95 quantile.
+#' @param p05 the "low" value, the 0.05 quantile.
 #'
 #' @return a list including the `meanlog` and `sdlog` parameters, as well as the fractional
 #'         difference between the estimated and actual median (0.5 quantile), `mdiff`.
 #'
 #' @examples
-#' lnorm_param(100000, 20000000, 1425000)
+#' lnorm_param(p50 = 1425000, p95 = 20000000)
+#' lnorm_param(p50 = 1425000, p95 = 20000000, p05 = 100000)
 #'
 #' @export
-lnorm_param <- function(p05, p95, p50) {
-  meanlog <- ((log(p95) - log(p05)) / 2) + log(p05)
-  sdlog <- (log(p95) - log(p05)) / (2 * stats::qnorm(0.95))
-  lnorm_median <- stats::qlnorm(0.5, meanlog = meanlog, sdlog = sdlog)
-  mdiff <- (p50 - lnorm_median) / lnorm_median
+lnorm_param <- function(p50, p95, p05 = NA) {
+  checkmate::assert_numeric(p50, lower = 0, finite = TRUE, any.missing = FALSE)
+  checkmate::assert_numeric(p95, lower = 0, finite = TRUE, any.missing = FALSE)
+  checkmate::assert_numeric(p05, lower = 0, finite = TRUE)
+
+  if (anyNA(p05)) {
+    meanlog <- log(p50)
+    sdlog <- (log(p95) - log(p50)) / stats::qnorm(0.95)
+    mdiff <- NA
+  } else {
+    meanlog <- ((log(p95) - log(p05)) / 2) + log(p05)
+    sdlog <- (log(p95) - log(p05)) / (2 * stats::qnorm(0.95))
+    lnorm_median <- stats::qlnorm(0.5, meanlog = meanlog, sdlog = sdlog)
+    mdiff <- (p50 - lnorm_median) / lnorm_median
+  }
 
   list(meanlog = meanlog, sdlog = sdlog, mdiff = mdiff)
 }

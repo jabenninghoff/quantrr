@@ -4,25 +4,32 @@
 \alias{lnorm_param}
 \title{Calculate Log Normal Parameters}
 \usage{
-lnorm_param(p05, p95, p50)
+lnorm_param(p50, p95, p05 = NA)
 }
 \arguments{
-\item{p05}{the "low" value, the 0.05 quantile.}
+\item{p50}{the most likely value, the 0.5 quantile.}
 
 \item{p95}{the "high" value, the 0.95 quantile.}
 
-\item{p50}{the most likely value, the 0.5 quantile.}
+\item{p05}{the "low" value, the 0.05 quantile.}
 }
 \value{
 a list including the \code{meanlog} and \code{sdlog} parameters, as well as the fractional
 difference between the estimated and actual median (0.5 quantile), \code{mdiff}.
 }
 \description{
-Calculate the parameters of a log normal distribution from estimated 0.05 and 0.95 quantile. Also
+Calculate the parameters of a log normal distribution from quantile estimates.
+}
+\details{
+If \code{p05} is not provided (the default), use \code{p50} (median) and \code{p95} to calculate \code{meanlog} and
+\code{sdlog}. If \code{p05} is provided, use \code{p05} and \code{p95} to calculate the parameters, and also
 calculate the fractional difference between the estimated median value (0.5 quantile) and the
 median value calculated from the 0.05 and 0.95 values.
+
+\code{mdiff} is set to \code{NA} if \code{p05} is not provided.
 }
 \examples{
-lnorm_param(100000, 20000000, 1425000)
+lnorm_param(p50 = 1425000, p95 = 20000000)
+lnorm_param(p50 = 1425000, p95 = 20000000, p05 = 100000)
 
 }
