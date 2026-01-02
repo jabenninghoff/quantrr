@@ -24,7 +24,10 @@ output:
 
 Example [quantrr](https://jabenninghoff.github.io/quantrr/) risk analysis of multi-factor authentication (MFA) using real data! Originally used for the plot in my Aug 28 [LinkedIn Post](https://www.linkedin.com/feed/update/urn:li:activity:7366875894809837570/).
 
-```{r setup, message = FALSE, warning = FALSE}
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
 library(quantrr)
 library(readxl)
 library(janitor)
@@ -74,7 +77,8 @@ Import and validate data from Excel.
 We use the IRIA 2025 data for the 5th, median, and 95th percentile of impact in all treatments, and
 adjust the frequency by 99% in the optimistic case and 76% in the pessimistic case.
 
-```{r import}
+```{r}
+#| label: import
 risks <- read_xlsx(report_file, sheet = "Risks") |>
   clean_names()
 
@@ -141,13 +145,15 @@ check_validation(validate_estimates, sheet = "Estimates")
 
 Risk descriptions:
 
-```{r risks}
+```{r}
+#| label: risks
 formattable(risks, align = "l")
 ```
 
 Treatment descriptions:
 
-```{r treatments}
+```{r}
+#| label: treatments
 formattable(treatments, align = "l")
 ```
 
@@ -156,7 +162,8 @@ formattable(treatments, align = "l")
 Forecast risk using Monte Carlo simulation. The average events, losses, 'typical' losses (geometric
 mean), and percentage of years with no losses for each risk and treatment are summarized below:
 
-```{r forecast}
+```{r}
+#| label: forecast
 consensus <- estimates |>
   group_by(treatment, risk) |>
   summarize(across(lambda:p50, ~ mean(.x, na.rm = TRUE)), .groups = "drop")
@@ -187,7 +194,8 @@ forecast |>
 
 Base losses (with no risk treatment) by risk:
 
-```{r risk_hist}
+```{r}
+#| label: risk_hist
 forecast |>
   filter(tolower(treatment) == "none") |>
   # remove zero losses to plot using log10 scale
@@ -202,7 +210,8 @@ forecast |>
 
 Combined losses by treatment:
 
-```{r treatment_hist}
+```{r}
+#| label: treatment_hist
 forecast |>
   group_by(treatment, year) |>
   summarize(total_losses = sum(losses), .groups = "drop_last") |>
@@ -224,7 +233,8 @@ Plot loss exceedance curves for all risks and combined risk, with risk treatment
 
 Plot loss exceedance curves for each risk:
 
-```{r risk_le}
+```{r}
+#| label: risk_le
 risk_le <- forecast |>
   group_by(risk, treatment) |>
   mutate(probability = 1 - percent_rank(losses)) |>
@@ -245,7 +255,8 @@ risk_le
 
 Interactive plot:
 
-```{r risk_le_plotly}
+```{r}
+#| label: risk_le_plotly
 ggplotly(risk_le + guides(color = "none"))
 ```
 
@@ -253,7 +264,8 @@ ggplotly(risk_le + guides(color = "none"))
 
 Plot loss exceedance curve for combined risk:
 
-```{r combined_le}
+```{r}
+#| label: combined_le
 combined_le <- forecast |>
   group_by(treatment, year) |>
   summarize(total_losses = sum(losses), .groups = "drop_last") |>
@@ -274,7 +286,8 @@ combined_le
 
 Interactive plot:
 
-```{r combined_le_plotly}
+```{r}
+#| label: combined_le_plotly
 ggplotly(combined_le + guides(color = "none"))
 ```
 
@@ -286,19 +299,22 @@ Additional details on the risk quantification analysis.
 
 Data validation results for Risks tab:
 
-```{r validate_risks}
+```{r}
+#| label: validate_risks
 plot(validate_risks)
 ```
 
 Data validation results for Treatments tab:
 
-```{r validate_treatments}
+```{r}
+#| label: validate_treatments
 plot(validate_treatments)
 ```
 
 Data validation results for Estimates tab:
 
-```{r validate_estimates}
+```{r}
+#| label: validate_estimates
 plot(validate_estimates)
 ```
 
@@ -306,7 +322,8 @@ plot(validate_estimates)
 
 All risk estimates:
 
-```{r estimates}
+```{r}
+#| label: estimates
 estimates |>
   mutate(across(p05:p50, ~ currency(.x, digits = 0L))) |>
   formattable(align = "l")
@@ -317,7 +334,8 @@ estimates |>
 Using a simple average of all experts that provided an estimate (not blank/NA), this gives us a
 consensus estimate for the three risks of:
 
-```{r consensus}
+```{r}
+#| label: consensus
 consensus |>
   mutate(across(p05:p50, ~ currency(.x, digits = 0L))) |>
   formattable(align = "l")
@@ -327,7 +345,8 @@ The consensus estimates for p05 and p95 result in the following parameters for l
 magnitude. The p50 estimate is used to calculate the percentage difference from the actual median
 (`mdiff`), a measure of estimate accuracy:
 
-```{r consensus_params}
+```{r}
+#| label: consensus_params
 consensus_params |>
   mutate(across(p05:p50, ~ currency(.x, digits = 0L)), mdiff = percent(mdiff)) |>
   formattable(align = "l")
@@ -337,6 +356,7 @@ consensus_params |>
 
 A `summary()` of the forecast results.
 
-```{r summary}
+```{r}
+#| label: summary
 summary(forecast)
 ```
