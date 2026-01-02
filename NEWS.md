@@ -1,3 +1,7 @@
+# quantrr 1.2.8
+
+* 2026 Upkeep
+
 # quantrr 1.2.7
 
 * First upkeep using `rdev::use_upkeep_issue()`
