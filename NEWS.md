@@ -2,6 +2,8 @@
 
 * Breaking change: updated `lnorm_param()` to calculate parameters using only p50 and p95 by default.
 
+* Updated analysis examples and template
+
 * 2026 Upkeep
 
 # quantrr 1.2.7
