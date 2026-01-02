@@ -8,6 +8,6 @@
 - [x] Create logo using [stickers](https://github.com/jabenninghoff/stickers)
 - [x] Add plots for risk treatments to allow estimation of return on investment (ROI)
 - [x] Add elicitation of only p50 and p95 for loss magnitude as the new default, continue to support p5, p50, p95 estimates
-- [ ] Add plot showing percentage of occurrences that result in no losses
+- [x] ~~Add plot showing percentage of occurrences that result in no losses~~
+- [x] Update package [accessibility](https://pkgdown.r-lib.org/articles/accessibility.html)
 - [ ] Add "Risk Modeling with quantrr" vignette that shows function code, explains report, possibly a "How To" article like [this substack post](https://diffuser.substack.com/p/how-to-build-a-loss-exceedance-curve)
-- [ ] Update package [accessibility](https://pkgdown.r-lib.org/articles/accessibility.html)

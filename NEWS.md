@@ -4,6 +4,8 @@
 
 * Updated analysis examples and template
 
+* Added alt text to plots in examples and template to improve accessibility
+
 * 2026 Upkeep
 
 # quantrr 1.2.7
