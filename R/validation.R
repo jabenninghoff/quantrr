@@ -30,5 +30,5 @@ check_validation <- function(out, sheet = NA) {
     warning(warn_start, "resulted in a warning", warn_loc, warn_end, call. = FALSE)
   }
 
-  return(invisible(pass))
+  invisible(pass)
 }
