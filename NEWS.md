@@ -1,4 +1,6 @@
-# quantrr 1.2.8
+# quantrr 1.3.0
+
+* Breaking change: updated `lnorm_param()` to calculate parameters using only p50 and p95 by default.
 
 * 2026 Upkeep
 

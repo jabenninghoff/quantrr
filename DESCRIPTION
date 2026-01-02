@@ -15,6 +15,7 @@ BugReports: https://github.com/jabenninghoff/quantrr/issues
 Depends:
     R (>= 4.1.0)
 Imports:
+    checkmate,
     dplyr,
     purrr,
     tibble,
