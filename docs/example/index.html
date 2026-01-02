@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,18 +34,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5fdbc8f45c2d0bcdc137be0dad0ef85a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-2cfd8bc47213d4766483d56c471cfecb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-5fdbc8f45c2d0bcdc137be0dad0ef85a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-887db9f152f626290836d94654f4db8d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-9bf6b10bcba5eae4d51a1abb52d3b9a8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-887db9f152f626290836d94654f4db8d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -117,7 +118,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -425,10 +426,10 @@ window.Quarto = {
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="" data-listing-date-sort="1723694400000" data-listing-file-modified-sort="1756231177394" data-listing-date-modified-sort="1755489600000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1172">
+<div class="quarto-post image-right" data-index="0" data-categories="" data-listing-date-sort="1723698000000" data-listing-file-modified-sort="1767394463465" data-listing-date-modified-sort="1755493200000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1413">
 <div class="thumbnail"><a href="./analysis/widgetsys.html" class="no-external">
 
-<p class="card-img-top"><img src="analysis/widgetsys_files/figure-html/risk_hist-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="analysis/widgetsys_files/figure-html/risk_hist-1.png" alt="Stacked histograms of number of losses by value for each risk."  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -450,10 +451,10 @@ Example quantrr risk analysis of the “Widget Management System” (WMS).
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="" data-listing-date-sort="1756353600000" data-listing-file-modified-sort="1757441779322" data-listing-date-modified-sort="1757390400000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1131">
+<div class="quarto-post image-right" data-index="1" data-categories="" data-listing-date-sort="1756357200000" data-listing-file-modified-sort="1767394608947" data-listing-date-modified-sort="1757394000000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1372">
 <div class="thumbnail"><a href="./analysis/mfa.html" class="no-external">
 
-<p class="card-img-top"><img src="analysis/mfa_files/figure-html/risk_hist-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="analysis/mfa_files/figure-html/risk_hist-1.png" alt="Stacked histograms of number of losses by value for each risk."  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -542,13 +543,14 @@ Example quantrr risk analysis of multi-factor authentication (MFA) using real da
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -897,10 +899,10 @@ Example quantrr risk analysis of multi-factor authentication (MFA) using real da
 <p>Report generated with <a href="https://jabenninghoff.github.io/quantrr/">quantrr</a></p>
 </div>   
     <div class="nav-footer-center">
-<p>Copyright 2025</p>
+<p>Copyright 2026</p>
 </div>
     <div class="nav-footer-right">
-<p>Rendered with Quarto 1.7.34</p>
+<p>Rendered with Quarto 1.8.26</p>
 </div>
   </div>
 </footer>
