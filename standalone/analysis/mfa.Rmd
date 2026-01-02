@@ -192,6 +192,7 @@ Base losses (with no risk treatment) by risk:
 
 ```{r}
 #| label: risk_hist
+#| fig-alt: "Stacked histograms of number of losses by value for each risk."
 forecast |>
   filter(tolower(treatment) == "none") |>
   # remove zero losses to plot using log10 scale
@@ -208,6 +209,7 @@ Combined losses by treatment:
 
 ```{r}
 #| label: treatment_hist
+#| fig-alt: "Stacked histograms of number of combined losses by value for each treatment."
 forecast |>
   group_by(treatment, year) |>
   summarize(total_losses = sum(losses), .groups = "drop_last") |>
@@ -231,6 +233,8 @@ Plot loss exceedance curves for each risk:
 
 ```{r}
 #| label: risk_le
+#| fig-alt: "Plot showing likelihood of experiencing a loss exceeding a given dollar value by risk,
+#|          comparing treatments."
 risk_le <- forecast |>
   group_by(risk, treatment) |>
   mutate(probability = 1 - percent_rank(losses)) |>
@@ -253,6 +257,8 @@ Interactive plot:
 
 ```{r}
 #| label: risk_le_plotly
+#| fig-alt: "Interactive plot showing likelihood of experiencing a loss exceeding a given dollar
+#|          value by risk, comparing treatments."
 ggplotly(risk_le + guides(color = "none"))
 ```
 
@@ -262,6 +268,8 @@ Plot loss exceedance curve for combined risk:
 
 ```{r}
 #| label: combined_le
+#| fig-alt: "Plot showing likelihood of experiencing a combined loss exceeding a given dollar value
+#|          by risk, comparing treatments."
 combined_le <- forecast |>
   group_by(treatment, year) |>
   summarize(total_losses = sum(losses), .groups = "drop_last") |>
@@ -284,6 +292,8 @@ Interactive plot:
 
 ```{r}
 #| label: combined_le_plotly
+#| fig-alt: "Interactive plot showing likelihood of experiencing a combined loss exceeding a given
+#|          dollar value by risk, comparing treatments."
 ggplotly(combined_le + guides(color = "none"))
 ```
 
@@ -297,6 +307,8 @@ Data validation results for Risks tab:
 
 ```{r}
 #| label: validate_risks
+#| fig-alt: "Plot showing percentage of values validated by rule, with passing values in green,
+#|           failing values in red, and missing values in gray."
 plot(validate_risks)
 ```
 
@@ -304,6 +316,8 @@ Data validation results for Treatments tab:
 
 ```{r}
 #| label: validate_treatments
+#| fig-alt: "Plot showing percentage of values validated by rule, with passing values in green,
+#|           failing values in red, and missing values in gray."
 plot(validate_treatments)
 ```
 
@@ -311,6 +325,8 @@ Data validation results for Estimates tab:
 
 ```{r}
 #| label: validate_estimates
+#| fig-alt: "Plot showing percentage of values validated by rule, with passing values in green,
+#|           failing values in red, and missing values in gray."
 plot(validate_estimates)
 ```
 
