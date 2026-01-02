@@ -38,10 +38,6 @@ library(purrr)
 library(ggplot2)
 library(plotly)
 
-# TODO: workaround for https://github.com/r-lib/lintr/issues/2790, update when
-#   https://github.com/data-cleaning/validate/pull/197 is released (1.1.6+)
-is.nzchar <- nzchar # nolint: object_name_linter.
-
 # set the relative file path and name to import
 report_file <- "data/mfa.xlsx"
 ```
@@ -86,10 +82,10 @@ validate_risks <- local({
   validate_rules <- validator(
     risk_char = is.character(risk),
     risk_not_na = !is.na(risk),
-    risk_not_blank = is.nzchar(risk, keep_na = TRUE),
+    risk_not_blank = nzchar(risk, keep_na = TRUE),
     desc_char = is.character(description),
     desc_not_na = !is.na(description),
-    desc_not_blank = is.nzchar(risk, keep_na = TRUE)
+    desc_not_blank = nzchar(risk, keep_na = TRUE)
   )
   confront(risks, validate_rules)
 })
@@ -103,10 +99,10 @@ validate_treatments <- local({
   validate_rules <- validator(
     treatment_char = is.character(treatment),
     treatment_not_na = !is.na(treatment),
-    treatment_not_blank = is.nzchar(treatment, keep_na = TRUE),
+    treatment_not_blank = nzchar(treatment, keep_na = TRUE),
     desc_char = is.character(description),
     desc_not_na = !is.na(description),
-    desc_not_blank = is.nzchar(treatment, keep_na = TRUE)
+    desc_not_blank = nzchar(treatment, keep_na = TRUE)
   )
   confront(treatments, validate_rules)
 })
@@ -116,7 +112,7 @@ check_validation(validate_treatments, sheet = "Treatments")
 estimates <- read_xlsx(report_file, sheet = "Estimates") |>
   clean_names() |>
   rename(
-    lambda = frequency_per_yer, p05 = low_5_percent, p95 = high_95_percent, p50 = most_likely
+    lambda = frequency_per_yer, p50 = most_likely, p95 = high_95_percent, p05 = low_5_percent
   )
 
 validate_estimates <- local({
@@ -125,15 +121,15 @@ validate_estimates <- local({
     risk_match = risk %in% risks$risk,
     expert_char = is.character(expert),
     expert_not_na = !is.na(expert),
-    expert_not_blank = is.nzchar(expert, keep_na = TRUE),
+    expert_not_blank = nzchar(expert, keep_na = TRUE),
     lambda_num = is.numeric(lambda),
     lambda_pos = lambda > 0,
-    p05_num = is.numeric(p05),
-    p05_pos = p05 > 0,
+    p50_num = is.numeric(p50),
+    p50_pos = p50 > 0,
     p95_num = is.numeric(p95),
     p95_pos = p95 > 0,
-    p50_num = is.numeric(p50),
-    p50_pos = p50 > 0
+    p05_num = is.numeric(p05),
+    p05_pos = p05 > 0
   )
   confront(estimates, validate_rules)
 })
@@ -166,7 +162,7 @@ mean), and percentage of years with no losses for each risk and treatment are su
 #| label: forecast
 consensus <- estimates |>
   group_by(treatment, risk) |>
-  summarize(across(lambda:p50, ~ mean(.x, na.rm = TRUE)), .groups = "drop")
+  summarize(across(lambda:p05, ~ mean(.x, na.rm = TRUE)), .groups = "drop")
 
 consensus_params <- consensus |>
   mutate(as_tibble(lnorm_param(p50 = .data$p50, p95 = .data$p95, p05 = .data$p05)))
@@ -325,7 +321,7 @@ All risk estimates:
 ```{r}
 #| label: estimates
 estimates |>
-  mutate(across(p05:p50, ~ currency(.x, digits = 0L))) |>
+  mutate(across(p50:p05, ~ currency(.x, digits = 0L))) |>
   formattable(align = "l")
 ```
 
@@ -337,13 +333,13 @@ consensus estimate for the three risks of:
 ```{r}
 #| label: consensus
 consensus |>
-  mutate(across(p05:p50, ~ currency(.x, digits = 0L))) |>
+  mutate(across(p50:p05, ~ currency(.x, digits = 0L))) |>
   formattable(align = "l")
 ```
 
-The consensus estimates for p05 and p95 result in the following parameters for log-normal loss
-magnitude. The p50 estimate is used to calculate the percentage difference from the actual median
-(`mdiff`), a measure of estimate accuracy:
+The consensus estimates result in the following parameters for log-normal loss magnitude. When both
+p05 and p95 are provided, the p50 estimate is used to calculate the percentage difference from
+the actual median (`mdiff`), a measure of estimate accuracy (otherwise `mdiff` is `NA`):
 
 ```{r}
 #| label: consensus_params
