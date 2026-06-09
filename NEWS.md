@@ -1,3 +1,7 @@
+# quantrr 1.3.1
+
+* Updated TODO
+
 # quantrr 1.3.0
 
 * Breaking change: updated `lnorm_param()` to calculate parameters using only p50 and p95 by default.
