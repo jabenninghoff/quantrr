@@ -22,5 +22,10 @@ Useful links:
 \author{
 \strong{Maintainer}: John Benninghoff \email{jbenninghoff@mac.com} (\href{https://orcid.org/0000-0002-6230-4742}{ORCID})
 
+Authors:
+\itemize{
+  \item John Benninghoff \email{jbenninghoff@mac.com} (\href{https://orcid.org/0000-0002-6230-4742}{ORCID})
+}
+
 }
 \keyword{internal}
