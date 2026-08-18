@@ -53,9 +53,9 @@ Professional services firm with \$5M in annual revenue. A loss of 1% (\$50K) is 
 IRIS 2025 Report found that the likelihood of at least 1 incident in the next year is 7.48% for
 firms with less than $10M in revenue.
 
-Figure A3 from the main [IRIS 2025 Report](https://www.cyentia.com/iris2025/) shows that the median
-loss for the Professional sector is \$736K and the 95th percentile is \$17M. From this we use trial
-and error to calculate the 50% (median) loss at $31,900.
+Figure A3 from the main [IRIS 2025 Report](https://www.cyentia.com/publication/iris2025/) shows that
+the median loss for the Professional sector is \$736K and the 95th percentile is \$17M. From this we
+use trial and error to calculate the 50% (median) loss at $31,900.
 
 According to a preprint [study](https://arxiv.org/abs/2305.00945), implementing MFA reduces the
 likelihood of compromise by 99%. An older [study](https://dl.acm.org/doi/10.1145/3308558.3313481)

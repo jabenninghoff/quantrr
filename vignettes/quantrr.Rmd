@@ -65,7 +65,7 @@ both. Additionally, when prompted, choose a Secure CRAN mirror ("0-Cloud [https]
 To install the standalone version of quantrr on macOS:
 
 1. Download and install the latest version of
-   [R for macOS](https://cloud.r-project.org/bin/macosx/). Choose the appropriate version for your
+   [R for macOS](https://cran.r-project.org/bin/macosx/). Choose the appropriate version for your
    hardware (Apple silicon or Intel).
 1. Download and install [Quarto CLI](https://quarto.org/docs/get-started/).
 1. From the "code" menu at <https://github.com/jabenninghoff/quantrr/>, select "Download ZIP".
