@@ -78,7 +78,7 @@
     "href": "analysis/mfa.html#forecast-summary",
     "title": "MFA Risk Analysis Report",
     "section": "Forecast Summary",
-    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year           risk            treatment             events       \n Min.   :    1   Length:75000       Length:75000       Min.   :0.00000  \n 1st Qu.: 6251   Class :character   Class :character   1st Qu.:0.00000  \n Median :12500   Mode  :character   Mode  :character   Median :0.00000  \n Mean   :12500                                         Mean   :0.03088  \n 3rd Qu.:18750                                         3rd Qu.:0.00000  \n Max.   :25000                                         Max.   :3.00000  \n     losses         \n Min.   :        0  \n 1st Qu.:        0  \n Median :        0  \n Mean   :   147273  \n 3rd Qu.:        0  \n Max.   :363833184",
+    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year              risk           treatment         events       \n Min.   :    1   Length   :75000   Length   :75000   Min.   :0.00000  \n 1st Qu.: 6251   N.unique :    1   N.unique :    3   1st Qu.:0.00000  \n Median :12500   N.blank  :    0   N.blank  :    0   Median :0.00000  \n Mean   :12500   Min.nchar:   20   Min.nchar:    4   Mean   :0.03035  \n 3rd Qu.:18750   Max.nchar:   20   Max.nchar:   21   3rd Qu.:0.00000  \n Max.   :25000                                       Max.   :3.00000  \n     losses         \n Min.   :        0  \n 1st Qu.:        0  \n Median :        0  \n Mean   :   145529  \n 3rd Qu.:        0  \n Max.   :732984128",
     "crumbs": [
       "MFA Risk Analysis Report"
     ]
@@ -148,7 +148,7 @@
     "href": "analysis/widgetsys.html#forecast-summary",
     "title": "Widget System Risk Analysis Report",
     "section": "Forecast Summary",
-    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year           risk            treatment             events       \n Min.   :    1   Length:150000      Length:150000      Min.   : 0.0000  \n 1st Qu.: 6251   Class :character   Class :character   1st Qu.: 0.0000  \n Median :12500   Mode  :character   Mode  :character   Median : 0.0000  \n Mean   :12500                                         Mean   : 0.9553  \n 3rd Qu.:18750                                         3rd Qu.: 2.0000  \n Max.   :25000                                         Max.   :10.0000  \n     losses         \n Min.   :0.000e+00  \n 1st Qu.:0.000e+00  \n Median :0.000e+00  \n Mean   :3.329e+06  \n 3rd Qu.:1.323e+05  \n Max.   :7.983e+09",
+    "text": "Forecast Summary\nA summary() of the forecast results.\n\nCodesummary(forecast)\n\n      year              risk            treatment          events       \n Min.   :    1   Length   :150000   Length   :150000   Min.   : 0.0000  \n 1st Qu.: 6251   N.unique :     3   N.unique :     2   1st Qu.: 0.0000  \n Median :12500   N.blank  :     0   N.blank  :     0   Median : 0.0000  \n Mean   :12500   Min.nchar:    16   Min.nchar:     4   Mean   : 0.9521  \n 3rd Qu.:18750   Max.nchar:    20   Max.nchar:     7   3rd Qu.: 2.0000  \n Max.   :25000                                         Max.   :10.0000  \n     losses         \n Min.   :0.000e+00  \n 1st Qu.:0.000e+00  \n Median :0.000e+00  \n Mean   :3.840e+06  \n 3rd Qu.:1.339e+05  \n Max.   :4.582e+10",
     "crumbs": [
       "Widget System Risk Analysis Report"
     ]
