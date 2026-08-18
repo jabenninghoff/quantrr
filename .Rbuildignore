@@ -1,6 +1,8 @@
 ^_pkgdown\.yml$
+^\.claude$
 ^\.github$
 ^\.lintr$
+^\.positai$
 ^\.renvignore$
 ^\.Rproj\.user$
 ^codecov\.yml$

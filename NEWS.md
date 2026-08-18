@@ -1,3 +1,7 @@
+# quantrr 1.3.2
+
+* 2026-08 Upkeep
+
 # quantrr 1.3.1
 
 * Updated TODO

@@ -4,6 +4,8 @@ options(
   warnPartialMatchArgs = TRUE,
   warnPartialMatchAttr = TRUE,
   warnPartialMatchDollar = TRUE,
+  # TODO: workaround for issue fixed in renv 1.2.5+ (https://github.com/rstudio/renv/pull/2348)
+  # renv.config.crandb.enabled = TRUE,
   styler.cache_root = "styler-perm"
 )
 
