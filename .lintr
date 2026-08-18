@@ -1,5 +1,6 @@
 linters: linters_with_tags(
     tags = NULL,
+    implicit_assignment_linter(allow_paren_print = TRUE),
     implicit_integer_linter = NULL,
     line_length_linter(100),
     missing_package_linter = NULL,
