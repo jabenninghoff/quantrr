@@ -1,3 +1,7 @@
+# quantrr 1.3.3
+
+* Minor updates
+
 # quantrr 1.3.2
 
 * 2026-08 Upkeep
