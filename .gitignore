@@ -45,6 +45,9 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
+# RStudio 2026.04.0+526
+.positai
+
 # macOS, vim
 .DS_Store
 *.swp
@@ -52,5 +55,3 @@ rsconnect/
 
 # Other exclusions
 inst/doc
-# RStudio 2026.04.0+526
-.positai
