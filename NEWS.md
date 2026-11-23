@@ -1,3 +1,7 @@
+# quantrr 1.3.4
+
+* Maintenance updates
+
 # quantrr 1.3.3
 
 * Minor updates
